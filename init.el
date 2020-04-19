@@ -4,7 +4,7 @@
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default fill-column 100)
-;(menu-bar-mode -1)
+(menu-bar-mode -1)
 (blink-cursor-mode 0)
 (show-paren-mode 1)
 (put 'upcase-region 'disabled nil)
