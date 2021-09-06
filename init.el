@@ -53,7 +53,7 @@
 (global-set-key (kbd "C-c m") 'magit-status)
 (use-package magit
   :ensure
-  :bind (("C-c m" . magit-status)))
+  :bind ("C-c m" . magit-status))
 
 ;; markdown-mode
 (use-package markdown-mode
@@ -75,6 +75,31 @@
   :ensure
   :config
   (which-key-mode))
+
+;; project interaction
+; todo: look at counsel-projectile-mode
+(use-package projectile
+  :ensure
+  :bind-keymap ("s-p" . projectile-command-map)
+  :config
+  (projectile-mode t))
+
+(use-package treemacs
+  :ensure
+  :bind
+  (:map global-map
+        ("M-0" . treemacs-select-window))
+  :config
+  (treemacs-add-and-display-current-project))
+  ;; (treemacs-find-file))
+
+(use-package treemacs-magit
+  :ensure
+  :after (treemacs magit))
+
+(use-package treemacs-projectile
+  :ensure
+  :after (treemacs projectile))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

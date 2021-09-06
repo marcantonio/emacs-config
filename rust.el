@@ -37,19 +37,29 @@
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
 
+(use-package lsp-treemacs
+  :ensure
+  :after (lsp-mode treemacs)
+  :config
+  (lsp-treemacs-sync-mode 1)
+  (lsp-treemacs-symbols))
+
+(use-package lsp-ivy
+  :ensure
+  :after (lsp-mode ivy))
+
 ;; inline errors
 (use-package flycheck :ensure)
 
-;; auto-complete
+;; auto-complete and code snippets
 (use-package company
   :ensure
-  :bind
-  ("M-RET". company-complete)
+  :bind ("M-RET". company-complete)
   (:map company-active-map
-              ("C-n". company-select-next)
-              ("C-p". company-select-previous)
-              ("M-<". company-select-first)
-              ("M->". company-select-last)))
+              ("C-n" . company-select-next)
+              ("C-p" . company-select-previous)
+              ("M-<" . company-select-first)
+              ("M->" . company-select-last)))
 
 (use-package yasnippet
   :ensure
@@ -60,11 +70,6 @@
 
 ;; cargo toml
 (use-package toml-mode :ensure)
-
-;; (use-package projectile
-;;   :ensure
-;;   )
-
 
 ;; for debugging
 ;; haven't palyed with this yet
