@@ -16,9 +16,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default fill-column 100)
 (menu-bar-mode 0)
+(tool-bar-mode 0)
 (blink-cursor-mode 0)
 (show-paren-mode t)
-(electric-pair-mode t)
+;(electric-pair-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -35,18 +36,18 @@
 ;; ispell
 (setq ispell-program-name "/usr/local/bin/ispell")
 
-;; better M-x
-(use-package smex
+;; selection goodness -- counsel/ivy/swiper
+(use-package counsel
   :ensure
-  :bind (("M-x" . smex)
-         ("C-c C-c M-x" . execute-extended-command))) ; original M-x
+  :bind (("C-s" . swiper))
+  :config
+  (counsel-mode 1))
 
 ;; macos specific
 (when (string-equal system-type "darwin")
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (when window-system
-    (tool-bar-mode 0)
     (set-frame-size (selected-frame) 200 60)))
 
 ;; best git UI ever

@@ -1,4 +1,5 @@
 ;; rust-mode + enhancements
+;; much of this comes from https://github.com/rksm/emacs-rust-config
 (use-package rustic
   :ensure
   :bind (:map rustic-mode-map
@@ -43,12 +44,51 @@
 (use-package company
   :ensure
   :bind
+  ("M-RET". company-complete)
   (:map company-active-map
               ("C-n". company-select-next)
               ("C-p". company-select-previous)
               ("M-<". company-select-first)
-              ("M->". company-select-last))
-  ("M-,". company-complete))
+              ("M->". company-select-last)))
+
+(use-package yasnippet
+  :ensure
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'text-mode-hook 'yas-minor-mode))
 
 ;; cargo toml
 (use-package toml-mode :ensure)
+
+;; (use-package projectile
+;;   :ensure
+;;   )
+
+
+;; for debugging
+;; haven't palyed with this yet
+;(use-package exec-path-from-shell
+;  :ensure
+;  :init (exec-path-from-shell-initialize))
+;
+;(when (executable-find "lldb-mi")
+;  (use-package dap-mode
+;    :ensure
+;    :config
+;    (dap-ui-mode)
+;    (dap-ui-controls-mode 1)
+;
+;    (require 'dap-lldb)
+;    (require 'dap-gdb-lldb)
+;    ;; installs .extension/vscode
+;    (dap-gdb-lldb-setup)
+;    (dap-register-debug-template
+;     "Rust::LLDB Run Configuration"
+;     (list :type "lldb"
+;           :request "launch"
+;           :name "LLDB::Run"
+;	   :gdbpath "rust-lldb"
+;           ;; uncomment if lldb-mi is not in PATH
+;           ;; :lldbmipath "path/to/lldb-mi"
+;           ))))
