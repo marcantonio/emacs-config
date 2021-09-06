@@ -36,12 +36,11 @@
 ;; ispell
 (setq ispell-program-name "/usr/local/bin/ispell")
 
-;; selection goodness -- counsel/ivy/swiper
+;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
-  :bind (("C-s" . swiper))
   :config
-  (counsel-mode 1))
+  (counsel-mode t))
 
 ;; macos specific
 (when (string-equal system-type "darwin")
