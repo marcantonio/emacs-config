@@ -22,6 +22,7 @@
 ;(electric-pair-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+;(load-theme 'whiteboard)
 
 ;; use normal emacs regexes in builder
 (require 're-builder)
@@ -36,18 +37,18 @@
 ;; ispell
 (setq ispell-program-name "/usr/local/bin/ispell")
 
-;; selection goodness -- counsel/ivy
-(use-package counsel
-  :ensure
-  :config
-  (counsel-mode t))
-
 ;; macos specific
 (when (string-equal system-type "darwin")
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (when window-system
     (set-frame-size (selected-frame) 200 60)))
+
+;; selection goodness -- counsel/ivy
+(use-package counsel
+  :ensure
+  :config
+  (counsel-mode t))
 
 ;; best git UI ever
 (global-set-key (kbd "C-c m") 'magit-status)
@@ -84,14 +85,14 @@
   :config
   (projectile-mode t))
 
+;; nice looking tree view
 (use-package treemacs
   :ensure
   :bind
   (:map global-map
         ("M-0" . treemacs-select-window))
   :config
-  (treemacs-add-and-display-current-project))
-  ;; (treemacs-find-file))
+  (treemacs-add-and-display-current-project)) ; launches treemacs on start in project directories
 
 (use-package treemacs-magit
   :ensure
@@ -105,6 +106,7 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;; load special configs
+; todo: do this conditionally
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
 (load-file (expand-file-name "rust.el" user-emacs-directory))
-(load-file (expand-file-name "go.el" user-emacs-directory))
+(load-file (expand-file-name "golang.el" user-emacs-directory))

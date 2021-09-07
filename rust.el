@@ -17,7 +17,7 @@
   :config
   (setq rustic-format-on-save t))
 
-;; for rust-analyzer
+;; lsp for rust-analyzer
 (use-package lsp-mode
   :ensure
   :commands lsp
@@ -51,7 +51,7 @@
 ;; inline errors
 (use-package flycheck :ensure)
 
-;; auto-complete and code snippets
+;; auto-complete
 (use-package company
   :ensure
   :bind ("M-RET". company-complete)
@@ -61,6 +61,7 @@
               ("M-<" . company-select-first)
               ("M->" . company-select-last)))
 
+;; code snippets
 (use-package yasnippet
   :ensure
   :config
