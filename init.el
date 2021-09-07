@@ -17,12 +17,12 @@
 (setq-default fill-column 100)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (show-paren-mode t)
 ;(electric-pair-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-;(load-theme 'whiteboard)
 
 ;; use normal emacs regexes in builder
 (require 're-builder)
@@ -44,11 +44,22 @@
   (when window-system
     (set-frame-size (selected-frame) 200 60)))
 
+;; save custom stuff elsewhere
+(load-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(use-package zenburn-theme
+  :ensure
+  :config (load-theme 'zenburn))
+
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
   :config
   (counsel-mode t))
+
+;; install smex but don't use it -- gives history to counsel-M-x
+(use-package smex :ensure)
 
 ;; best git UI ever
 (global-set-key (kbd "C-c m") 'magit-status)
@@ -101,9 +112,6 @@
 (use-package treemacs-projectile
   :ensure
   :after (treemacs projectile))
-
-;; save custom stuff elsewhere
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 ;; load special configs
 ; todo: do this conditionally
