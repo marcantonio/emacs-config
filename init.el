@@ -48,10 +48,6 @@
 (load-file (expand-file-name "custom.el" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(use-package zenburn-theme
-  :ensure
-  :config (load-theme 'zenburn))
-
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure

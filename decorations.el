@@ -11,7 +11,11 @@
 ;(set-face-attribute 'font-lock-type-face nil :foreground "DarkGoldenRod")
 ;(setq font-lock-maximum-decoration t)
 
+(load-theme 'leuven)
+(set-cursor-color "#335ea8")
 
+;; slightly bigger font
+(set-face-attribute 'default nil :height 130)
 
 ;; use magit diff colors for ediff -- better over tmux
 (add-hook 'ediff-load-hook
