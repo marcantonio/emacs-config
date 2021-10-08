@@ -13,9 +13,11 @@
               ("C-c C-c s" . lsp-rust-analyzer-status)
               ("C-c C-c e" . lsp-rust-analyzer-expand-macro)
               ("C-c C-c d" . dap-hydra)
-              ("C-c C-c h" . lsp-ui-doc-glance))
+              ("C-c C-c h" . lsp-ui-doc-glance)
+              ("C-c C-c C-y" . rustic-cargo-test-rerun))
   :config
-  (setq rustic-format-on-save t))
+  (setq lsp-eldoc-render-all nil)
+  (setq compilation-scroll-output t)) ;auto scroll compilation buffers
 
 ;; lsp for rust-analyzer
 (use-package lsp-mode
@@ -23,25 +25,24 @@
   :commands lsp
   :custom
   (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
-  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-idle-delay 0.7)
   :config
+  (lsp-signature-doc-lines 1)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
   :ensure
   :commands lsp-ui-mode
   :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
+  (lsp-ui-doc-show-with-cursor nil)
+  (lsp-ui-doc-show-with-mouse t)
+  (lsp-ui-sideline-show-hover t))
 
 (use-package lsp-treemacs
-  :ensure
+  :disabled
   :after (lsp-mode treemacs)
   :config
-  (lsp-treemacs-sync-mode 1)
+  (lsp-treemacs-sync-mode t)
   (lsp-treemacs-symbols))
 
 (use-package lsp-ivy
@@ -64,10 +65,11 @@
 ;; code snippets
 (use-package yasnippet
   :ensure
+  :bind ("s-SPC". yas-expand)
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'text-mode-hook 'yas-minor-mode))
+  (add-hook 'prog-mode-hook 'yas-minor-mode))
+
 
 ;; cargo toml
 (use-package toml-mode :ensure)

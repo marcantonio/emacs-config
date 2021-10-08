@@ -20,7 +20,6 @@
 (scroll-bar-mode 0)
 (blink-cursor-mode 0)
 (show-paren-mode t)
-;(electric-pair-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -36,6 +35,10 @@
 
 ;; ispell
 (setq ispell-program-name "/usr/local/bin/ispell")
+
+;; balance pairs
+(electric-pair-mode t)
+(setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 
 ;; macos specific
 (when (string-equal system-type "darwin")
@@ -94,7 +97,7 @@
 
 ;; nice looking tree view
 (use-package treemacs
-  :ensure
+  :disabled
   :bind
   (:map global-map
         ("M-0" . treemacs-select-window))
@@ -102,11 +105,11 @@
   (treemacs-add-and-display-current-project)) ; launches treemacs on start in project directories
 
 (use-package treemacs-magit
-  :ensure
+  :disabled
   :after (treemacs magit))
 
 (use-package treemacs-projectile
-  :ensure
+  :disabled
   :after (treemacs projectile))
 
 ;; load special configs
@@ -114,3 +117,4 @@
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
 (load-file (expand-file-name "rust.el" user-emacs-directory))
 (load-file (expand-file-name "golang.el" user-emacs-directory))
+(load-file (expand-file-name "scheme.el" user-emacs-directory))
