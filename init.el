@@ -105,6 +105,9 @@
   :config
   (projectile-mode t))
 
+;; window purposes
+(use-package window-purpose
+  :ensure
   :config
   (purpose-mode))
 
