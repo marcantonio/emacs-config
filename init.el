@@ -52,6 +52,14 @@
 (if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
     (load-file (expand-file-name "custom.el" user-emacs-directory)))
 
+;; better package interface
+(use-package paradox
+  :ensure
+  :config
+  (paradox-enable)
+  (setq paradox-execute-asynchronously nil)
+  (setq paradox-github-token t))
+
 
 ;; selection goodness -- counsel/ivy
 (use-package counsel
