@@ -64,6 +64,7 @@
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
+  :diminish
   :config
   (counsel-mode t))
 
@@ -94,6 +95,7 @@
 ;; hints for keybindings
 (use-package which-key
   :ensure
+  :diminish
   :config
   (which-key-mode))
 
@@ -108,8 +110,12 @@
 ;; window purposes
 (use-package window-purpose
   :ensure
+  :diminish
   :config
   (purpose-mode))
+
+;; hide minor modes from modeline
+(use-package diminish :ensure)
 
 ;; load special configs
 ; todo: do this conditionally

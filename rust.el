@@ -35,6 +35,9 @@
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
+;; todo: doesn't work unless manually eval'd
+(diminish 'lsp-lens-mode)
+
 (use-package lsp-ui
   :ensure
   :commands lsp-ui-mode
@@ -49,11 +52,14 @@
   :after (lsp-mode ivy))
 
 ;; inline errors
-(use-package flycheck :ensure)
+(use-package flycheck
+  :ensure
+  :diminish)
 
 ;; auto-complete
 (use-package company
   :ensure
+  :diminish
   :bind
   ("M-RET". company-complete)
   (:map company-active-map
