@@ -1,5 +1,9 @@
 ;; rust-mode + enhancements
 ;; much of this comes from https://github.com/rksm/emacs-rust-config
+;;
+;; great ref for lsp ui elements:
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+
 (use-package rustic
   :ensure
   :bind (:map rustic-mode-map
@@ -16,6 +20,7 @@
               ("C-c C-c h" . lsp-ui-doc-glance)
               ("C-c C-c C-y" . rustic-cargo-test-rerun))
   :config
+  (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
   (setq lsp-eldoc-render-all nil)
   (setq compilation-scroll-output t)) ;auto scroll compilation buffers
 
@@ -26,8 +31,8 @@
   :custom
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-idle-delay 0.7)
-  :config
   (lsp-signature-doc-lines 1)
+  :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
@@ -36,14 +41,8 @@
   :custom
   (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-doc-show-with-mouse t)
+  (lsp-ui-sideline-show-code-actions t)
   (lsp-ui-sideline-show-hover t))
-
-(use-package lsp-treemacs
-  :disabled
-  :after (lsp-mode treemacs)
-  :config
-  (lsp-treemacs-sync-mode t)
-  (lsp-treemacs-symbols))
 
 (use-package lsp-ivy
   :ensure
@@ -55,21 +54,25 @@
 ;; auto-complete
 (use-package company
   :ensure
-  :bind ("M-RET". company-complete)
+  :bind
+  ("M-RET". company-complete)
   (:map company-active-map
-              ("C-n" . company-select-next)
-              ("C-p" . company-select-previous)
-              ("M-<" . company-select-first)
-              ("M->" . company-select-last)))
+        ("C-n" . company-select-next)
+        ("C-p" . company-select-previous)
+        ("M-<" . company-select-first)
+        ("M->" . company-select-last)))
 
 ;; code snippets
 (use-package yasnippet
   :ensure
-  :bind ("s-SPC". yas-expand)
+  :bind
+  (:map yas-minor-mode-map
+        ("C-'". yas-expand)
+        ([(tab)] . nil)
+        ("TAB" . nil))
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
-
 
 ;; cargo toml
 (use-package toml-mode :ensure)

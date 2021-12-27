@@ -11,11 +11,16 @@
 ;(set-face-attribute 'font-lock-type-face nil :foreground "DarkGoldenRod")
 ;(setq font-lock-maximum-decoration t)
 
-(load-theme 'leuven)
-(set-cursor-color "#335ea8")
+;(load-theme 'leuven)
+;(set-cursor-color "#335ea8")
+
+(use-package vscode-dark-plus-theme
+  :ensure
+  :config
+  (load-theme 'vscode-dark-plus))
 
 ;; slightly bigger font
-(set-face-attribute 'default nil :height 130)
+;(set-face-attribute 'default nil :height 130)
 
 ;; use magit diff colors for ediff -- better over tmux
 (add-hook 'ediff-load-hook

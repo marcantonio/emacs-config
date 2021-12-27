@@ -14,7 +14,7 @@
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
 (setq-default indent-tabs-mode nil)
-(setq-default fill-column 100)
+(setq-default fill-column 80)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -34,7 +34,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; ispell
-(setq ispell-program-name "/usr/local/bin/ispell")
+(setq ispell-program-name "/usr/bin/ispell")
 
 ;; balance pairs
 (electric-pair-mode t)
@@ -48,8 +48,10 @@
     (set-frame-size (selected-frame) 200 60)))
 
 ;; save custom stuff elsewhere
-(load-file (expand-file-name "custom.el" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
+    (load-file (expand-file-name "custom.el" user-emacs-directory)))
+
 
 ;; selection goodness -- counsel/ivy
 (use-package counsel
@@ -95,22 +97,8 @@
   :config
   (projectile-mode t))
 
-;; nice looking tree view
-(use-package treemacs
-  :disabled
-  :bind
-  (:map global-map
-        ("M-0" . treemacs-select-window))
   :config
-  (treemacs-add-and-display-current-project)) ; launches treemacs on start in project directories
-
-(use-package treemacs-magit
-  :disabled
-  :after (treemacs magit))
-
-(use-package treemacs-projectile
-  :disabled
-  :after (treemacs projectile))
+  (purpose-mode))
 
 ;; load special configs
 ; todo: do this conditionally
