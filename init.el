@@ -52,6 +52,9 @@
 (if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
     (load-file (expand-file-name "custom.el" user-emacs-directory)))
 
+;; hide minor modes from modeline
+(use-package diminish :ensure)
+
 ;; better package interface
 (use-package paradox
   :ensure
@@ -72,7 +75,6 @@
 (use-package smex :ensure)
 
 ;; best git UI ever
-(global-set-key (kbd "C-c m") 'magit-status)
 (use-package magit
   :ensure
   :bind ("C-c m" . magit-status))
@@ -99,23 +101,33 @@
   :config
   (which-key-mode))
 
-;; project interaction
-; todo: look at counsel-projectile-mode
-(use-package projectile
-  :ensure
-  :bind-keymap ("s-p" . projectile-command-map)
-  :config
-  (projectile-mode t))
+;; project interaction -- I don't know if this is useful yet
+;; todo: look at counsel-projectile-mode
+;; (use-package projectile
+;;   :ensure
+;;   :bind-keymap ("C-c p" . projectile-command-map)
+;;   :config
+;;   (projectile-mode t))
 
 ;; window purposes
 (use-package window-purpose
   :ensure
   :diminish
+  :bind
+  (("C-c p r" . purpose-load-rust-dev)
+   :map purpose-mode-map
+   ("C-x b" . nil)
+   ("C-x C-f" . nil))
   :config
-  (purpose-mode))
-
-;; hide minor modes from modeline
-(use-package diminish :ensure)
+  (defun purpose-load-rust-dev ()
+    (interactive)
+    (purpose-load-window-layout 'rust-dev1))
+  (purpose-mode)
+  (add-to-list 'purpose-user-mode-purposes '(rustic-mode . rust))
+  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
+  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
+  (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
+  (purpose-compile-user-configuration))
 
 ;; load special configs
 ; todo: do this conditionally

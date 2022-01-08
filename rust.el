@@ -32,6 +32,7 @@
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-idle-delay 0.7)
   (lsp-signature-doc-lines 1)
+  (lsp-lens-enable nil)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
@@ -61,12 +62,12 @@
   :ensure
   :diminish
   :bind
-  ("M-RET". company-complete)
-  (:map company-active-map
-        ("C-n" . company-select-next)
-        ("C-p" . company-select-previous)
-        ("M-<" . company-select-first)
-        ("M->" . company-select-last)))
+  (("M-RET". company-complete)
+   (:map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous)
+         ("M-<" . company-select-first)
+         ("M->" . company-select-last))))
 
 ;; code snippets
 (use-package yasnippet
