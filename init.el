@@ -123,9 +123,10 @@
     (interactive)
     (purpose-load-window-layout 'rust-dev1))
   (purpose-mode)
-  (add-to-list 'purpose-user-mode-purposes '(rustic-mode . rust))
+  (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
+  (add-to-list 'purpose-user-mode-purposes '(magit-status-mode . main))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
+  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
   (purpose-compile-user-configuration))
 
