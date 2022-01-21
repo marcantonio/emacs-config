@@ -50,11 +50,13 @@
 
 (use-package lsp-ivy
   :ensure
+  :defer t
   :after (lsp-mode ivy))
 
 ;; inline errors
 (use-package flycheck
   :ensure
+  :defer t
   :diminish)
 
 ;; auto-complete
