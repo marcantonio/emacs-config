@@ -52,8 +52,27 @@
 (if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
     (load-file (expand-file-name "custom.el" user-emacs-directory)))
 
-;; hide minor modes from modeline
-(use-package diminish :ensure)
+;; icons for doom-modeline
+(use-package all-the-icons
+  :ensure
+  :if (display-graphic-p))
+
+;; modeline candy
+;; run `all-the-icons-install-fonts` after
+(use-package doom-modeline
+  :ensure
+  :config
+  (doom-modeline-mode)
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-env-version nil))
+
+;; menu for minor modes
+(use-package minions
+  :ensure
+  :after (doom-modeline)
+  :config
+  (setq doom-modeline-minor-modes t)
+  (minions-mode))
 
 ;; better package interface
 (use-package paradox
@@ -67,7 +86,6 @@
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
-  :diminish
   :config
   (counsel-mode t))
 
@@ -97,7 +115,6 @@
 ;; hints for keybindings
 (use-package which-key
   :ensure
-  :diminish
   :config
   (which-key-mode))
 
@@ -112,7 +129,6 @@
 ;; window purposes
 (use-package window-purpose
   :ensure
-  :diminish
   :bind
   (("C-c p r" . purpose-load-rust-dev)
    :map purpose-mode-map
