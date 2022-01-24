@@ -147,8 +147,10 @@
   (purpose-compile-user-configuration))
 
 ;; load special configs
-; todo: do this conditionally
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
-(load-file (expand-file-name "rust.el" user-emacs-directory))
-(load-file (expand-file-name "golang.el" user-emacs-directory))
-(load-file (expand-file-name "scheme.el" user-emacs-directory))
+(with-eval-after-load "rustic"
+  (load-file (expand-file-name "rust.el" user-emacs-directory)))
+(with-eval-after-load "scheme-mode"
+  (load-file (expand-file-name "scheme.el" user-emacs-directory)))
+(with-eval-after-load "go-mode"
+  (load-file (expand-file-name "golang.el" user-emacs-directory)))
