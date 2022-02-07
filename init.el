@@ -143,6 +143,7 @@
   (add-to-list 'purpose-user-mode-purposes '(magit-status-mode . main))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
+  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
   (purpose-compile-user-configuration))
 
@@ -154,3 +155,6 @@
   (load-file (expand-file-name "scheme.el" user-emacs-directory)))
 (with-eval-after-load "go-mode"
   (load-file (expand-file-name "golang.el" user-emacs-directory)))
+
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(require 'light-mode)

@@ -18,6 +18,7 @@
               ("C-c C-c e" . lsp-rust-analyzer-expand-macro)
               ("C-c C-c d" . dap-hydra)
               ("C-c C-c h" . lsp-ui-doc-glance)
+              ("C-c C-c C-e" . rustic-run-shell-command)
               ("C-c C-c C-y" . rustic-cargo-test-rerun))
   :config
   (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
@@ -34,7 +35,8 @@
   (lsp-signature-doc-lines 1)
   (lsp-lens-enable nil)
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (setq lsp-rust-analyzer-proc-macro-enable t))
 
 (use-package lsp-ui
   :ensure
