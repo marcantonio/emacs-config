@@ -45,7 +45,10 @@
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (when window-system
-    (set-frame-size (selected-frame) 200 60)))
+    (set-frame-size (selected-frame) 200 60))
+  (when (equal emacs-version "27.2")
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+  (set-face-attribute 'default nil :height 130))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -149,8 +152,10 @@
 ;; load special configs
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
 (with-eval-after-load "rustic"
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "rust.el" user-emacs-directory)))
 (with-eval-after-load "scheme-mode"
   (load-file (expand-file-name "scheme.el" user-emacs-directory)))
 (with-eval-after-load "go-mode"
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "golang.el" user-emacs-directory)))

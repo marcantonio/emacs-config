@@ -24,59 +24,7 @@
   (setq lsp-eldoc-render-all nil)
   (setq compilation-scroll-output t)) ;auto scroll compilation buffers
 
-;; lsp for rust-analyzer
-(use-package lsp-mode
-  :ensure
-  :commands lsp
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-idle-delay 0.7)
-  (lsp-signature-doc-lines 1)
-  (lsp-lens-enable nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package lsp-ui
-  :ensure
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-doc-show-with-cursor nil)
-  (lsp-ui-doc-show-with-mouse t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-show-hover t))
-
-(use-package lsp-ivy
-  :ensure
-  :defer t
-  :after (lsp-mode ivy))
-
-;; inline errors
-(use-package flycheck
-  :ensure
-  :defer t)
-
-;; auto-complete
-(use-package company
-  :ensure
-  :bind
-  (("M-RET". company-complete)
-   (:map company-active-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ("M-<" . company-select-first)
-         ("M->" . company-select-last))))
-
-;; code snippets
-(use-package yasnippet
-  :ensure
-  :bind
-  (:map yas-minor-mode-map
-        ("C-'". yas-expand)
-        ([(tab)] . nil)
-        ("TAB" . nil))
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode))
+(setq lsp-rust-analyzer-cargo-watch-command "clippy")
 
 ;; cargo toml
 (use-package toml-mode :ensure)
