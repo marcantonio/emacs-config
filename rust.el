@@ -18,6 +18,7 @@
               ("C-c C-c e" . lsp-rust-analyzer-expand-macro)
               ("C-c C-c d" . dap-hydra)
               ("C-c C-c h" . lsp-ui-doc-glance)
+              ("C-c C-c C-e" . rustic-run-shell-command)
               ("C-c C-c C-y" . rustic-cargo-test-rerun))
   :config
   (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
@@ -25,6 +26,7 @@
   (setq compilation-scroll-output t)) ;auto scroll compilation buffers
 
 (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+(setq lsp-rust-analyzer-proc-macro-enable t)
 
 ;; cargo toml
 (use-package toml-mode :ensure)
