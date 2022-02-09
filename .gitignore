@@ -3,3 +3,4 @@ custom.el
 elpa
 smex-items
 transient
+auto-save-list
