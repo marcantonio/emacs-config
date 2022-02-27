@@ -137,14 +137,21 @@
   :config
   (defun purpose-load-rust-dev ()
     (interactive)
-    (purpose-load-window-layout 'rust-dev1))
+    (purpose-load-window-layout 'rust-dev)
+    (rustic-cargo-test)
+    (flycheck-list-errors)
+    (treemacs)
+    (lsp-treemacs-symbols)
+    (winum-mode))
   (purpose-mode)
   (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
-  (add-to-list 'purpose-user-mode-purposes '(magit-status-mode . main))
+  (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
+  (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
+  (add-to-list 'purpose-user-mode-purposes '(xref--xref-buffer-mode . flycheck))
   (purpose-compile-user-configuration))
 
 ;; load special configs

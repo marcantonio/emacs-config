@@ -32,7 +32,7 @@
   :custom
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-idle-delay 0.7)
-  (lsp-signature-doc-lines 1)
+  (lsp-signature-render-documentation nil)
   (lsp-lens-enable nil)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -51,6 +51,36 @@
   :ensure
   :defer t
   :after (lsp-mode ivy))
+
+;; let's try treemacs again
+(use-package treemacs
+  :ensure
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :bind
+  (:map global-map
+        ("C-x t t" . treemacs)))
+
+(use-package treemacs-magit
+  :ensure
+  :after (treemacs magit))
+
+(use-package lsp-treemacs
+  :ensure
+  :config
+  (lsp-treemacs-sync-mode t))
+
+;; select windows easier
+(use-package winum
+  :ensure
+  :bind
+  (:map winum-keymap
+        ("M-1" . winum-select-window-1)
+        ("M-2" . winum-select-window-2)
+        ("M-3" . winum-select-window-3))
+  :config
+  (winum-mode))
 
 ;; inline errors
 (use-package flycheck
