@@ -19,7 +19,9 @@
               ("C-c C-c d" . dap-hydra)
               ("C-c C-c h" . lsp-ui-doc-glance)
               ("C-c C-c C-e" . rustic-run-shell-command)
-              ("C-c C-c C-y" . rustic-cargo-test-rerun))
+              ("C-c C-c C-y" . rustic-cargo-test-rerun)
+              ("C-c C-c C-j" . flycheck-next-error)
+              ("C-c C-c C-k" . flycheck-previous-error))
   :config
   (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
   (setq lsp-eldoc-render-all nil)
@@ -53,23 +55,20 @@
   :after (lsp-mode ivy))
 
 ;; let's try treemacs again
-(use-package treemacs
-  :ensure
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :bind
-  (:map global-map
-        ("C-x t t" . treemacs)))
+;; (use-package treemacs
+;;   :init
+;;   (with-eval-after-load 'winum
+;;     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+;;   :bind
+;;   (:map global-map
+;;         ("C-x t t" . treemacs)))
 
-(use-package treemacs-magit
-  :ensure
-  :after (treemacs magit))
+;; (use-package treemacs-magit
+;;   :after (treemacs magit))
 
-(use-package lsp-treemacs
-  :ensure
-  :config
-  (lsp-treemacs-sync-mode t))
+;; (use-package lsp-treemacs
+;;   :config
+;;   (lsp-treemacs-sync-mode t))
 
 ;; select windows easier
 (use-package winum
@@ -80,6 +79,7 @@
         ("M-2" . winum-select-window-2)
         ("M-3" . winum-select-window-3))
   :config
+  (setq winum-auto-setup-mode-line nil)
   (winum-mode))
 
 ;; inline errors

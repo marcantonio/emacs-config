@@ -140,8 +140,6 @@
     (purpose-load-window-layout 'rust-dev)
     (rustic-cargo-test)
     (flycheck-list-errors)
-    (treemacs)
-    (lsp-treemacs-symbols)
     (winum-mode))
   (purpose-mode)
   (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
