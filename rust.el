@@ -24,91 +24,10 @@
               ("C-c C-c C-k" . flycheck-previous-error))
   :config
   (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-rust-analyzer-proc-macro-enable t)
   (setq lsp-eldoc-render-all nil)
   (setq compilation-scroll-output t)) ;auto scroll compilation buffers
-
-;; lsp for rust-analyzer
-(use-package lsp-mode
-  :ensure
-  :commands lsp
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-idle-delay 0.7)
-  (lsp-signature-render-documentation nil)
-  (lsp-lens-enable nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (setq lsp-rust-analyzer-proc-macro-enable t))
-
-(use-package lsp-ui
-  :ensure
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-doc-show-with-cursor nil)
-  (lsp-ui-doc-show-with-mouse t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-show-hover t))
-
-(use-package lsp-ivy
-  :ensure
-  :defer t
-  :after (lsp-mode ivy))
-
-;; let's try treemacs again
-;; (use-package treemacs
-;;   :init
-;;   (with-eval-after-load 'winum
-;;     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-;;   :bind
-;;   (:map global-map
-;;         ("C-x t t" . treemacs)))
-
-;; (use-package treemacs-magit
-;;   :after (treemacs magit))
-
-;; (use-package lsp-treemacs
-;;   :config
-;;   (lsp-treemacs-sync-mode t))
-
-;; select windows easier
-(use-package winum
-  :ensure
-  :bind
-  (:map winum-keymap
-        ("M-1" . winum-select-window-1)
-        ("M-2" . winum-select-window-2)
-        ("M-3" . winum-select-window-3))
-  :config
-  (setq winum-auto-setup-mode-line nil)
-  (winum-mode))
-
-;; inline errors
-(use-package flycheck
-  :ensure
-  :defer t)
-
-;; auto-complete
-(use-package company
-  :ensure
-  :bind
-  (("M-RET". company-complete)
-   (:map company-active-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ("M-<" . company-select-first)
-         ("M->" . company-select-last))))
-
-;; code snippets
-(use-package yasnippet
-  :ensure
-  :bind
-  (:map yas-minor-mode-map
-        ("C-'". yas-expand)
-        ([(tab)] . nil)
-        ("TAB" . nil))
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode))
 
 ;; cargo toml
 (use-package toml-mode :ensure)

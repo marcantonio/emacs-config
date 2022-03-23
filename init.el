@@ -45,7 +45,10 @@
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (when window-system
-    (set-frame-size (selected-frame) 200 60)))
+    (set-frame-size (selected-frame) 200 60))
+  (when (equal emacs-version "27.2")
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+  (set-face-attribute 'default nil :height 130))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -118,6 +121,34 @@
   :config
   (which-key-mode))
 
+;; let's try treemacs again
+;; (use-package treemacs
+;;   :init
+;;   (with-eval-after-load 'winum
+;;     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+;;   :bind
+;;   (:map global-map
+;;         ("C-x t t" . treemacs)))
+
+;; (use-package treemacs-magit
+;;   :after (treemacs magit))
+
+;; (use-package lsp-treemacs
+;;   :config
+;;   (lsp-treemacs-sync-mode t))
+
+;; select windows easier
+(use-package winum
+  :ensure
+  :bind
+  (:map winum-keymap
+        ("M-1" . winum-select-window-1)
+        ("M-2" . winum-select-window-2)
+        ("M-3" . winum-select-window-3))
+  :config
+  (setq winum-auto-setup-mode-line nil)
+  (winum-mode))
+
 ;; project interaction -- I don't know if this is useful yet
 ;; todo: look at counsel-projectile-mode
 ;; (use-package projectile
@@ -155,10 +186,12 @@
 ;; load special configs
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
 (with-eval-after-load "rustic"
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "rust.el" user-emacs-directory)))
 (with-eval-after-load "scheme-mode"
   (load-file (expand-file-name "scheme.el" user-emacs-directory)))
 (with-eval-after-load "go-mode"
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "golang.el" user-emacs-directory)))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
