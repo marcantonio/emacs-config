@@ -3,7 +3,7 @@
   :commands lsp
   :custom
   (lsp-idle-delay 0.7)
-  (lsp-signature-doc-lines 1)
+  (lsp-signature-render-documentation nil)
   (lsp-lens-enable nil)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)

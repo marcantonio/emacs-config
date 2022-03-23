@@ -19,14 +19,15 @@
               ("C-c C-c d" . dap-hydra)
               ("C-c C-c h" . lsp-ui-doc-glance)
               ("C-c C-c C-e" . rustic-run-shell-command)
-              ("C-c C-c C-y" . rustic-cargo-test-rerun))
+              ("C-c C-c C-y" . rustic-cargo-test-rerun)
+              ("C-c C-c C-j" . flycheck-next-error)
+              ("C-c C-c C-k" . flycheck-previous-error))
   :config
   (setq lsp-rust-analyzer-server-command '("~/.cargo/bin/rust-analyzer"))
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-rust-analyzer-proc-macro-enable t)
   (setq lsp-eldoc-render-all nil)
   (setq compilation-scroll-output t)) ;auto scroll compilation buffers
-
-(setq lsp-rust-analyzer-cargo-watch-command "clippy")
-(setq lsp-rust-analyzer-proc-macro-enable t)
 
 ;; cargo toml
 (use-package toml-mode :ensure)
