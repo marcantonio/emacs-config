@@ -57,4 +57,5 @@
         ("TAB" . nil))
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode))
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (yas-minor-mode))
