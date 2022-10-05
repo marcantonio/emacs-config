@@ -13,8 +13,9 @@
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
 (setq column-number-mode t)
+(setq column-number-indicator-zero-based nil)
 (setq-default indent-tabs-mode nil)
-(setq-default fill-column 80)
+(setq-default fill-column 90)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -84,7 +85,6 @@
   (paradox-enable)
   (setq paradox-execute-asynchronously nil)
   (setq paradox-github-token t))
-
 
 ;; selection goodness -- counsel/ivy
 (use-package counsel
@@ -162,6 +162,7 @@
   :ensure
   :bind
   (("C-c p r" . purpose-load-rust-dev)
+   ("C-c p c" . purpose-load-cxx-dev)
    :map purpose-mode-map
    ("C-x b" . nil)
    ("C-x C-f" . nil))
@@ -172,8 +173,15 @@
     (rustic-cargo-test)
     (flycheck-list-errors)
     (winum-mode))
+  (defun purpose-load-cxx-dev ()
+    (interactive)
+    (purpose-load-window-layout 'cxx-dev)
+    (flycheck-list-errors)
+    (winum-mode))
   (purpose-mode)
   (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
+  (add-to-list 'purpose-user-mode-purposes '(c-mode . main))
+  (add-to-list 'purpose-user-mode-purposes '(c++-mode . main))
   (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
@@ -185,14 +193,26 @@
 
 ;; load special configs
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
-(with-eval-after-load "rustic"
+
+(defun config-rustic-mode ()
   (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "rust.el" user-emacs-directory)))
-(with-eval-after-load "scheme-mode"
-  (load-file (expand-file-name "scheme.el" user-emacs-directory)))
-(with-eval-after-load "go-mode"
+(add-hook 'rustic-mode-hook 'config-rustic-mode)
+
+(defun config-cxx-mode ()
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
+  (load-file (expand-file-name "cc.el" user-emacs-directory))
+  (lsp))
+(add-hook 'c-mode-hook 'config-cxx-mode)
+(add-hook 'c++-mode-hook 'config-cxx-mode)
+
+(defun config-go-mode ()
   (load-file (expand-file-name "lsp.el" user-emacs-directory))
   (load-file (expand-file-name "golang.el" user-emacs-directory)))
+(add-hook 'go-mode-hook 'config-go-mode)
+
+(with-eval-after-load "scheme-mode"
+  (load-file (expand-file-name "scheme.el" user-emacs-directory)))
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (require 'light-mode)

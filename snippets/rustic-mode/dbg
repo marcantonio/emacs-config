@@ -3,4 +3,4 @@
 #key : d
 #contributor : Robert Krahn
 # --
-dbg!($0)
+dbg!(&$0);

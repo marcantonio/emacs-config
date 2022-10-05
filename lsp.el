@@ -1,21 +1,33 @@
+;; common lsp-mode config
+
 (use-package lsp-mode
   :ensure
   :commands lsp
+  :bind (:map lsp-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c d" . dap-hydra)
+              ("C-c C-c h" . lsp-ui-doc-glance)
+              ("C-c C-c C-j" . flycheck-next-error)
+              ("C-c C-c C-k" . flycheck-previous-error))
   :custom
-  (lsp-idle-delay 0.7)
+  (lsp-idle-delay 0.1)
   (lsp-signature-render-documentation nil)
   (lsp-lens-enable nil)
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (if (boundp 'tramp-remote-path)
-      (progn
-        (add-to-list 'tramp-remote-path "/home/mas/go/bin")
-        (add-to-list 'tramp-remote-path 'tramp-own-remote-path)))
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "gopls")
-                    :major-modes '(go-mode)
-                    :remote? t
-                    :server-id 'electron.soda.fm)))
+  (setq lsp-eldoc-render-all nil)
+  (setq gc-cons-threshold (* 100 1024 1024))
+  (setq read-process-output-max (* 3 1024 1024))
+  (setq undo-limit (* 2 1024 1024))
+  (setq undo-strong-limit (* 2 1024 1024))
+  (setq undo-outer-limit (* 24 1024 1024))
+  (setq compilation-scroll-output t)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
   :ensure
@@ -45,7 +57,10 @@
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous)
          ("M-<" . company-select-first)
-         ("M->" . company-select-last))))
+         ("M->" . company-select-last)))
+  :config
+  (setq company-idle-delay 0.0)
+  (setq company-minimum-prefix-length 2))
 
 ;; code snippets
 (use-package yasnippet
