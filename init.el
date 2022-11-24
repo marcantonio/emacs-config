@@ -36,6 +36,7 @@
 
 ;; ispell
 (setq ispell-program-name "/usr/bin/ispell")
+(setq ispell-dictionary "american")
 
 ;; balance pairs
 (electric-pair-mode t)
@@ -121,22 +122,6 @@
   :config
   (which-key-mode))
 
-;; let's try treemacs again
-;; (use-package treemacs
-;;   :init
-;;   (with-eval-after-load 'winum
-;;     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-;;   :bind
-;;   (:map global-map
-;;         ("C-x t t" . treemacs)))
-
-;; (use-package treemacs-magit
-;;   :after (treemacs magit))
-
-;; (use-package lsp-treemacs
-;;   :config
-;;   (lsp-treemacs-sync-mode t))
-
 ;; select windows easier
 (use-package winum
   :ensure
@@ -156,40 +141,6 @@
 ;;   :bind-keymap ("C-c p" . projectile-command-map)
 ;;   :config
 ;;   (projectile-mode t))
-
-;; window purposes
-(use-package window-purpose
-  :ensure
-  :bind
-  (("C-c p r" . purpose-load-rust-dev)
-   ("C-c p c" . purpose-load-cxx-dev)
-   :map purpose-mode-map
-   ("C-x b" . nil)
-   ("C-x C-f" . nil))
-  :config
-  (defun purpose-load-rust-dev ()
-    (interactive)
-    (purpose-load-window-layout 'rust-dev)
-    (rustic-cargo-test)
-    (flycheck-list-errors)
-    (winum-mode))
-  (defun purpose-load-cxx-dev ()
-    (interactive)
-    (purpose-load-window-layout 'cxx-dev)
-    (flycheck-list-errors)
-    (winum-mode))
-  (purpose-mode)
-  (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
-  (add-to-list 'purpose-user-mode-purposes '(c-mode . main))
-  (add-to-list 'purpose-user-mode-purposes '(c++-mode . main))
-  (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
-  (add-to-list 'purpose-user-mode-purposes '(xref--xref-buffer-mode . flycheck))
-  (purpose-compile-user-configuration))
 
 ;; load special configs
 (load-file (expand-file-name "decorations.el" user-emacs-directory))
