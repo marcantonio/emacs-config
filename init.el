@@ -58,12 +58,12 @@
     (load-file (expand-file-name "custom.el" user-emacs-directory)))
 
 ;; icons for doom-modeline
-(use-package all-the-icons
+;; run `nerd-icons-install-fonts` after
+(use-package nerd-icons
   :ensure
   :if (display-graphic-p))
 
 ;; modeline candy
-;; run `all-the-icons-install-fonts` after
 (use-package doom-modeline
   :ensure
   :config
