@@ -48,14 +48,28 @@
 (when (string-equal system-type "darwin")
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
+
   ;; start in a reasonable position
   (setq default-frame-alist
         '((top + 25) (left + 40)))
+
   ;; with reasonable dimensions
   (when window-system
     (set-frame-size (selected-frame) 200 60))
+
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
+  (setq ispell-program-name "/opt/homebrew/bin/ispell")
+
+  ;; on a mac the default visible bell is obnoxious
+  (setq ring-bell-function
+        (lambda ()
+          (unless (memq this-command
+                        '(isearch-abort abort-recursive-edit
+                                        exit-minibuffer keyboard-quit))
+            (invert-face 'mode-line)
+            (run-with-timer 0.1 nil 'invert-face 'mode-line))))
+
   (when (equal emacs-version "27.2")
     (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")))
 
