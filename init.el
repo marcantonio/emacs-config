@@ -23,6 +23,8 @@
 (show-paren-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(set-face-attribute 'default nil :height 130)
+(setq visible-bell t)
 
 ;; use normal emacs regexes in builder
 (require 're-builder)
@@ -55,9 +57,7 @@
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
   (when (equal emacs-version "27.2")
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-  ;; bump up font size
-  (set-face-attribute 'default nil :height 130))
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -163,6 +163,11 @@
   (lsp))
 (add-hook 'c-mode-hook 'config-cxx-mode)
 (add-hook 'c++-mode-hook 'config-cxx-mode)
+
+(defun config-haskell-mode ()
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
+  (load-file (expand-file-name "haskell.el" user-emacs-directory)))
+(add-hook 'haskell-mode-hook 'config-haskell-mode)
 
 (defun config-python-mode ()
   (load-file (expand-file-name "lsp.el" user-emacs-directory))

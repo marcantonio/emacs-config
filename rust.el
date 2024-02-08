@@ -19,6 +19,15 @@
 ;; cargo toml
 (use-package toml-mode :ensure)
 
+;; load purposes
+(require 'setup-lsp)
+(load-dev-mode 'rustic-mode)
+;; the next 3 lines should work if you put cargo-run-test back in purpose
+;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
+;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
+;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
+
+
 ;; for debugging
 ;; (defun find-rust-exec ()
 ;;   (let ((exec-name (f-base (lsp-workspace-root))))

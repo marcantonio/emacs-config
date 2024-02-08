@@ -1,5 +1,7 @@
 ;; common lsp-mode config
 
+(provide 'setup-lsp)
+
 (use-package lsp-mode
   :ensure
   :commands lsp
@@ -97,8 +99,7 @@
 (use-package window-purpose
   :ensure
   :bind
-  (("C-c p r" . purpose-load-rust-dev)
-   ("C-c p c" . purpose-load-cxx-dev)
+  (("C-c p c" . purpose-load-dev)
    :map purpose-mode-map
    ("C-x b" . nil)
    ("C-x C-f" . nil))
@@ -112,26 +113,19 @@
       (lsp-treemacs-symbols)
       (define-key global-map (kbd "M-0") #'lsp-treemacs-symbols)
       (select-window main-win)))
-  (defun purpose-load-rust-dev ()
+  (defun purpose-load-dev ()
     (interactive)
-    (purpose-load-window-layout 'rust-dev)
-    (rustic-cargo-test)
-    (flycheck-list-errors)
-    (winum-mode))
-  (defun purpose-load-cxx-dev ()
-    (interactive)
-    (purpose-load-window-layout 'cxx-dev)
+    (purpose-load-window-layout 'dev)
     (load-treemacs-symbols)
     (flycheck-list-errors)
     (winum-mode))
   (purpose-mode)
-  (add-to-list 'purpose-user-mode-purposes '(rustic-mode . main))
-  (add-to-list 'purpose-user-mode-purposes '(c-mode . main))
-  (add-to-list 'purpose-user-mode-purposes '(c++-mode . main))
   (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))
-  (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-plain-run-mode . cargo-run-test))
   (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
   (add-to-list 'purpose-user-mode-purposes '(xref--xref-buffer-mode . flycheck))
+  (purpose-compile-user-configuration))
+
+(defun load-dev-mode (mode)
+  (require 'window-purpose)
+  (add-to-list 'purpose-user-mode-purposes `(,mode . main))
   (purpose-compile-user-configuration))
