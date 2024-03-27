@@ -193,6 +193,12 @@
   (load-file (expand-file-name "golang.el" user-emacs-directory)))
 (add-hook 'go-mode-hook 'config-go-mode)
 
+(defun config-perl-mode ()
+  (load-file (expand-file-name "lsp.el" user-emacs-directory))
+  (load-file (expand-file-name "perl.el" user-emacs-directory)))
+(defalias 'perl-mode 'cperl-mode)
+(add-hook 'cperl-mode-hook 'config-perl-mode)
+
 (with-eval-after-load "scheme-mode"
   (load-file (expand-file-name "scheme.el" user-emacs-directory)))
 
