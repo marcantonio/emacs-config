@@ -8,6 +8,6 @@
   :custom
   (gofmt-command "goimports"))
 
-(require 'setup-lsp)
+(require 'mas-setup-lsp)
 (load-dev-mode 'go-mode)
 (lsp-deferred)

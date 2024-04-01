@@ -1,6 +1,6 @@
 ;; common lsp-mode config
 
-(provide 'setup-lsp)
+(provide 'mas-setup-lsp)
 
 (use-package lsp-mode
   :ensure
@@ -118,6 +118,7 @@
     (purpose-load-window-layout 'dev)
     (load-treemacs-symbols)
     (flycheck-list-errors)
+    (setq mas-purpose-active t)
     (winum-mode))
   (purpose-mode)
   (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))

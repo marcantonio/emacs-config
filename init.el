@@ -23,7 +23,7 @@
 (show-paren-mode t)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 140)
 (setq visible-bell t)
 
 ;; use normal emacs regexes in builder
@@ -120,7 +120,12 @@
 ;; best git UI ever
 (use-package magit
   :ensure
-  :bind ("C-c m" . magit-status))
+  :bind ("C-c m" . magit-status)
+  :config
+  (lambda ()
+    ;; magit should use the whole window unless purpose is handling it
+    (unless mas-purpose-active
+      (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))))
 
 ;; markdown-mode
 (use-package markdown-mode
