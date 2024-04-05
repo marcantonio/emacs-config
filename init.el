@@ -122,10 +122,13 @@
   :ensure
   :bind ("C-c m" . magit-status)
   :config
-  (lambda ()
-    ;; magit should use the whole window unless purpose is handling it
-    (unless mas-purpose-active
-      (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))))
+  ;; magit should use the whole window unless purpose is handling it
+  (setq magit-display-buffer-function
+        (lambda (buffer)
+          (interactive)
+          (if (bound-and-true-p mas-purpose-active)
+              (magit-display-buffer-traditional buffer)
+            (magit-display-buffer-fullframe-status-v1 buffer)))))
 
 ;; markdown-mode
 (use-package markdown-mode
