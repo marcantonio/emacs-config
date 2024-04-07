@@ -20,8 +20,11 @@
 (use-package toml-mode :ensure)
 
 ;; load purposes
-(require 'mas-setup-lsp)
+(require 'mas-lsp)
 (load-dev-mode 'rustic-mode)
+
+(provide 'mas-rust)
+
 ;; the next 3 lines should work if you put cargo-run-test back in purpose
 ;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))
 ;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-run-mode . cargo-run-test))

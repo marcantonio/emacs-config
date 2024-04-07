@@ -1,7 +1,5 @@
 ;; common lsp-mode config
 
-(provide 'mas-setup-lsp)
-
 (use-package lsp-mode
   :ensure
   :commands lsp
@@ -81,10 +79,6 @@
 
 (use-package treemacs
   :ensure
-  ;; :init
-  ;; (with-eval-after-load 'winum
-  ;;   (define-key winum-keymap
-  ;;     (kbd "M-0") #'treemacs-select-window))
   :bind
   (:map global-map
         ("C-x t t" . treemacs)))
@@ -118,8 +112,7 @@
     (purpose-load-window-layout 'dev)
     (load-treemacs-symbols)
     (flycheck-list-errors)
-    (setq mas-purpose-active t)
-    (winum-mode))
+    (setq mas-purpose-active t))
   (purpose-mode)
   (add-to-list 'purpose-user-regexp-purposes '("^magit.*" . main))
   (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . flycheck))
@@ -130,3 +123,5 @@
   (require 'window-purpose)
   (add-to-list 'purpose-user-mode-purposes `(,mode . main))
   (purpose-compile-user-configuration))
+
+(provide 'mas-lsp)

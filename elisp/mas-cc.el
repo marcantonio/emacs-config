@@ -1,6 +1,8 @@
 (setq c-basic-offset 4)
 
-(require 'mas-setup-lsp)
+(require 'mas-lsp)
 (load-dev-mode 'c-mode)
 (load-dev-mode 'c++-mode)
 (lsp-deferred)
+
+(provide 'mas-cc)

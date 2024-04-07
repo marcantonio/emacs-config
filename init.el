@@ -9,6 +9,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; my libs
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(require 'mas)
+
 ;; general
 (setq make-backup-files nil)
 (setq inhibit-startup-message t)
@@ -25,6 +29,10 @@
 (put 'downcase-region 'disabled nil)
 (set-face-attribute 'default nil :height 140)
 (setq visible-bell t)
+(global-set-key (kbd "M-r") 'mas-reload-config)
+
+(if (daemonp)
+    (global-set-key (kbd "C-x C-c") 'mas-c-x-c-c))
 
 ;; use normal emacs regexes in builder
 (require 're-builder)
@@ -44,34 +52,26 @@
 (electric-pair-mode t)
 (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 
-;; macos specific
+;; macOS specific
 (when (string-equal system-type "darwin")
+  ;; swap meta and super
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
+  (global-set-key (kbd "M-`") 'other-frame)
 
-  ;; start in a reasonable position
+  ;; for all frames start with better position and dimensions and with no scrollbar
   (setq default-frame-alist
-        '((top + 25) (left + 40)))
-
-  ;; with reasonable dimensions
-  (when window-system
-    (set-frame-size (selected-frame) 200 60))
+        '((top + 25) (left + 40)
+          (width . 200) (height . 60)
+          (vertical-scroll-bars . nil)))
 
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
   (setq ispell-program-name "/opt/homebrew/bin/ispell")
 
-  ;; on a mac the default visible bell is obnoxious
-  (setq ring-bell-function
-        (lambda ()
-          (unless (memq this-command
-                        '(isearch-abort abort-recursive-edit
-                                        exit-minibuffer keyboard-quit))
-            (invert-face 'mode-line)
-            (run-with-timer 0.1 nil 'invert-face 'mode-line))))
 
-  (when (equal emacs-version "27.2")
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")))
+  ;; on a mac the default visible bell is obnoxious
+  (setq ring-bell-function 'mas-visible-bell))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -140,7 +140,8 @@
 (use-package json-mode
   :ensure
   :custom
-  (json-reformat:pretty-string? t)) ; don't escaping strings
+  ;; don't escaping strings
+  (json-reformat:pretty-string? t))
 
 ;; highlights all symbol occurences
 (use-package highlight-symbol :ensure)
@@ -151,64 +152,42 @@
   :config
   (which-key-mode))
 
-;; select windows easier
-(use-package winum
-  :ensure
-  :bind
-  (:map winum-keymap
-        ("M-1" . winum-select-window-1)
-        ("M-2" . winum-select-window-2)
-        ("M-3" . winum-select-window-3))
-  :config
-  (setq winum-auto-setup-mode-line nil)
-  (winum-mode))
-
-;; project interaction -- I don't know if this is useful yet
-;; todo: look at counsel-projectile-mode
-;; (use-package projectile
-;;   :ensure
-;;   :bind-keymap ("C-c p" . projectile-command-map)
-;;   :config
-;;   (projectile-mode t))
-
 ;; load special configs
-(load-file (expand-file-name "decorations.el" user-emacs-directory))
+(load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
 
 (defun config-rustic-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "rust.el" user-emacs-directory)))
+  (require 'mas-lsp)
+  (require 'mas-rust))
 (add-hook 'rustic-mode-hook 'config-rustic-mode)
 
 (defun config-cxx-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "cc.el" user-emacs-directory))
-  (lsp))
+  (require 'mas-lsp)
+  (require 'mas-cc))
 (add-hook 'c-mode-hook 'config-cxx-mode)
 (add-hook 'c++-mode-hook 'config-cxx-mode)
 
 (defun config-haskell-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "haskell.el" user-emacs-directory)))
+  (require 'mas-lsp)
+  (require 'mas-haskell))
 (add-hook 'haskell-mode-hook 'config-haskell-mode)
 
 (defun config-python-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "python.el" user-emacs-directory)))
+  (require 'mas-lsp)
+  (require 'mas-python))
 (add-hook 'python-mode-hook 'config-python-mode)
 
 (defun config-go-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "golang.el" user-emacs-directory)))
+  (require 'mas-lsp)
+  (require 'mas-golang))
 (add-hook 'go-mode-hook 'config-go-mode)
 
 (defun config-perl-mode ()
-  (load-file (expand-file-name "lsp.el" user-emacs-directory))
-  (load-file (expand-file-name "perl.el" user-emacs-directory)))
+  (require 'mas-lsp)
+  (require 'mas-perl))
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook 'config-perl-mode)
 
 (with-eval-after-load "scheme-mode"
-  (load-file (expand-file-name "scheme.el" user-emacs-directory)))
+  (load-file (expand-file-name "elisp/mas-scheme.el" user-emacs-directory)))
 
-(add-to-list 'load-path "~/.emacs.d/elisp/")
 (require 'light-mode)

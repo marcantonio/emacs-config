@@ -1,0 +1,2 @@
+export PATH=/usr/local/opt/util-linux/bin:/usr/local/bin:$PATH
+setsid -f /Users/mas/bin/ec >>/tmp/emacs.out 2>&1

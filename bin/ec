@@ -1,0 +1,13 @@
+#!/usr/local/bin/bash
+
+if [[ $# -ne 0 ]]; then
+    EVAL="(progn "
+    for FILE in "$@"; do
+        EVAL="$EVAL (find-file \"$FILE\")"
+    done
+    EVAL="$EVAL)"
+else
+    EVAL="(switch-to-buffer \"*scratch*\")"
+fi
+
+emacsclient -c -a '' -e "(progn (x-focus-frame nil) $EVAL)" >/tmp/emacs.out 2>&1
