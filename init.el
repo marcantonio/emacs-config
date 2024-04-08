@@ -1,13 +1,19 @@
+(add-to-list 'after-init-hook
+             (lambda ()
+               (message (concat "emacs (" (number-to-string (emacs-pid)) ") started in " (emacs-init-time)))))
+
+;; minimize garbage collection during startup
+(setq gc-cons-threshold most-positive-fixnum)
+
+;; lower threshold back to 8MB
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (expt 2 23))))
+
 ;; package
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
-;; install use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 
 ;; my libs
 (add-to-list 'load-path "~/.emacs.d/elisp")
@@ -65,20 +71,21 @@
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
 
-  (setq ispell-program-name "/usr/local/bin/ispell")
+  (setq ispell-program-name "/opt/homebrew/bin/ispell")
 
   ;; on a mac the default visible bell is obnoxious
   (setq ring-bell-function 'mas-visible-bell))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
-    (load-file (expand-file-name "custom.el" user-emacs-directory)))
+(if (file-exists-p custom-file)
+    (load-file custom-file))
 
 ;; icons for doom-modeline
 ;; run `nerd-icons-install-fonts` after
 (use-package nerd-icons
   :ensure
+  :defer t
   :if (display-graphic-p))
 
 ;; modeline candy
@@ -100,6 +107,7 @@
 ;; better package interface
 (use-package paradox
   :ensure
+  :defer t
   :config
   (paradox-enable)
   (setq paradox-execute-asynchronously nil)
@@ -108,11 +116,14 @@
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
+  :defer t
   :config
   (counsel-mode t))
 
 ;; install smex but don't use it -- gives history to counsel-M-x
-(use-package smex :ensure)
+(use-package smex
+  :ensure
+  :defer t)
 
 ;; best git UI ever
 (use-package magit
@@ -130,22 +141,27 @@
 ;; markdown-mode
 (use-package markdown-mode
   :ensure
+  :defer t
   :custom
   (auto-mode-alist (cons '("\\.md" . gfm-mode) auto-mode-alist)))
 
 ;; json-mode
 (use-package json-mode
   :ensure
+  :defer t
   :custom
   ;; don't escape strings
   (json-reformat:pretty-string? t))
 
 ;; highlights all symbol occurences
-(use-package highlight-symbol :ensure)
+(use-package highlight-symbol
+  :ensure
+  :defer t)
 
 ;; hints for keybindings
 (use-package which-key
   :ensure
+  :defer t
   :config
   (which-key-mode))
 
