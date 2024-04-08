@@ -31,9 +31,6 @@
 (setq visible-bell t)
 (global-set-key (kbd "M-r") 'mas-reload-config)
 
-(if (daemonp)
-    (global-set-key (kbd "C-x C-c") 'mas-c-x-c-c))
-
 ;; use normal emacs regexes in builder
 (require 're-builder)
 (setq reb-re-syntax 'string)
@@ -67,8 +64,8 @@
 
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
-  (setq ispell-program-name "/opt/homebrew/bin/ispell")
 
+  (setq ispell-program-name "/usr/local/bin/ispell")
 
   ;; on a mac the default visible bell is obnoxious
   (setq ring-bell-function 'mas-visible-bell))
@@ -140,7 +137,7 @@
 (use-package json-mode
   :ensure
   :custom
-  ;; don't escaping strings
+  ;; don't escape strings
   (json-reformat:pretty-string? t))
 
 ;; highlights all symbol occurences

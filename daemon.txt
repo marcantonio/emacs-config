@@ -1,2 +1,25 @@
+;; stuff for running a daemon
+
+;; automator app
 export PATH=/usr/local/opt/util-linux/bin:/usr/local/bin:$PATH
 setsid -f /Users/mas/bin/ec >>/tmp/emacs.out 2>&1
+
+;; init.el entry
+(if (daemonp)
+    (global-set-key (kbd "C-x C-c") 'mas-c-x-c-c))
+
+
+;; ec script (aliased as emacs)
+#!/usr/local/bin/bash
+
+if [[ $# -ne 0 ]]; then
+    EVAL="(progn "
+    for FILE in "$@"; do
+        EVAL="$EVAL (find-file \"$FILE\")"
+    done
+    EVAL="$EVAL)"
+else
+    EVAL="(switch-to-buffer \"*scratch*\")"
+fi
+
+emacsclient -c -a '' -e "(progn (x-focus-frame nil) $EVAL)" >/tmp/emacs.out 2>&1
