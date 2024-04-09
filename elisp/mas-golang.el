@@ -1,4 +1,4 @@
-;; go-mode
+(require 'mas-lsp)
 
 (use-package go-mode
   :ensure
@@ -8,8 +8,6 @@
   :custom
   (gofmt-command "goimports"))
 
-(require 'mas-lsp)
 (load-dev-mode 'go-mode)
-(lsp-deferred)
 
 (provide 'mas-golang)

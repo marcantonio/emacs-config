@@ -104,19 +104,11 @@
   (setq doom-modeline-minor-modes t)
   (minions-mode))
 
-;; better package interface
-(use-package paradox
-  :ensure
-  :defer t
-  :config
-  (paradox-enable)
-  (setq paradox-execute-asynchronously nil)
-  (setq paradox-github-token t))
-
 ;; selection goodness -- counsel/ivy
 (use-package counsel
   :ensure
   :defer t
+  :bind ("M-x" . 'counsel-M-x)
   :config
   (counsel-mode t))
 
@@ -161,7 +153,6 @@
 ;; hints for keybindings
 (use-package which-key
   :ensure
-  :defer t
   :config
   (which-key-mode))
 
@@ -170,37 +161,43 @@
 
 (defun config-rustic-mode ()
   (require 'mas-lsp)
-  (require 'mas-rust))
+  (require 'mas-rust)
+  (lsp-deferred))
 (add-hook 'rustic-mode-hook 'config-rustic-mode)
 
 (defun config-cxx-mode ()
   (require 'mas-lsp)
-  (require 'mas-cc))
+  (require 'mas-cc)
+  (lsp-deferred))
 (add-hook 'c-mode-hook 'config-cxx-mode)
 (add-hook 'c++-mode-hook 'config-cxx-mode)
 
 (defun config-haskell-mode ()
   (require 'mas-lsp)
-  (require 'mas-haskell))
+  (require 'mas-haskell)
+  (lsp-deferred))
 (add-hook 'haskell-mode-hook 'config-haskell-mode)
 
 (defun config-python-mode ()
   (require 'mas-lsp)
-  (require 'mas-python))
+  (require 'mas-python)
+  (lsp-deferred))
 (add-hook 'python-mode-hook 'config-python-mode)
 
 (defun config-go-mode ()
   (require 'mas-lsp)
-  (require 'mas-golang))
+  (require 'mas-golang)
+  (lsp-deferred))
 (add-hook 'go-mode-hook 'config-go-mode)
 
 (defun config-perl-mode ()
   (require 'mas-lsp)
-  (require 'mas-perl))
+  (require 'mas-perl)
+  (lsp-deferred))
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook 'config-perl-mode)
 
 (with-eval-after-load "scheme-mode"
-  (load-file (expand-file-name "elisp/mas-scheme.el" user-emacs-directory)))
+  (load "mas-scheme"))
 
 (require 'light-mode)

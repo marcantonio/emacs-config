@@ -4,6 +4,8 @@
 ;; great ref for lsp ui elements:
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
 
+(require 'mas-lsp)
+
 (use-package rustic
   :ensure
   :bind (:map rustic-mode-map
@@ -19,8 +21,6 @@
 ;; cargo toml
 (use-package toml-mode :ensure)
 
-;; load purposes
-(require 'mas-lsp)
 (load-dev-mode 'rustic-mode)
 
 (provide 'mas-rust)

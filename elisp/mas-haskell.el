@@ -1,7 +1,6 @@
-(use-package lsp-haskell :ensure)
-
 (require 'mas-lsp)
+
+(use-package lsp-haskell :ensure)
 (load-dev-mode 'haskell-mode)
-(lsp-deferred)
 
 (provide 'mas-haskell)
