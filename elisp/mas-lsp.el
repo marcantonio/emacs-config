@@ -69,7 +69,7 @@
   :ensure
   :bind
   (:map yas-minor-mode-map
-        ("C-'". yas-expand)
+        ("M-'" . yas-expand)
         ([(tab)] . nil)
         ("TAB" . nil))
   :config
