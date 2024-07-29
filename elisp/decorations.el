@@ -14,10 +14,19 @@
 ;(load-theme 'leuven)
 ;(set-cursor-color "#335ea8")
 
-(use-package vscode-dark-plus-theme
+;; (use-package vscode-dark-plus-theme
+;;   :ensure
+;;   :config
+;;   (load-theme 'vscode-dark-plus))
+
+(use-package doom-themes
   :ensure
   :config
-  (load-theme 'vscode-dark-plus))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-city-lights))
+  ;;(load-theme 'doom-palenight))
+
 
 ;; slightly bigger font
 ;(set-face-attribute 'default nil :height 130)

@@ -169,6 +169,7 @@
 (defun config-cxx-mode ()
   (require 'mas-lsp)
   (require 'mas-cc)
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (lsp-deferred))
 (add-hook 'c-mode-hook 'config-cxx-mode)
 (add-hook 'c++-mode-hook 'config-cxx-mode)

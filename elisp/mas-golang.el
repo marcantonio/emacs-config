@@ -10,4 +10,6 @@
 
 (load-dev-mode 'go-mode)
 
+;(setq lsp-go-gopls-server-path "/usr/bin/gopls")
+
 (provide 'mas-golang)
