@@ -176,4 +176,7 @@
 (add-hook 'go-mode-hook 'mas/config-go-mode)
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook 'mas/config-perl-mode)
-
+(add-hook 'js-ts-mode-hook 'mas/config-ts-mode)
+(add-hook 'tsx-ts-mode-hook 'mas/config-ts-mode)
+(add-hook 'typescript-ts-mode-hook 'mas/config-ts-mode)
+(setq auto-mode-alist (cons '("\\.ts" . typescript-ts-mode) auto-mode-alist))

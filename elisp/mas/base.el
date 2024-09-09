@@ -37,10 +37,10 @@
   (require 'mas/golang)
   (lsp-deferred))
 
-;; (defun mas/config-ts-mode ()
-;;   (require 'mas/lsp)
-;;   (require 'mas/ts)
-;;   (lsp-deferred))
+(defun mas/config-ts-mode ()
+  (require 'mas/lsp)
+  (require 'mas/ts)
+  (lsp-deferred))
 
 (defun mas/config-haskell-mode ()
   (require 'mas/lsp)
