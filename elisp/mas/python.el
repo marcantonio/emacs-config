@@ -1,4 +1,4 @@
-(require 'mas-lsp)
+(require 'mas/lsp)
 
 ;; pip install "python-lsp-server[all]"
 (add-hook 'lsp-managed-mode-hook
@@ -6,6 +6,6 @@
             (flycheck-disable-checker 'python-pylint)
             (flycheck-select-checker 'python-flake8)))
 (setq flycheck-flake8rc "~/.emacs.d/flake8.cfg")
-(load-dev-mode 'python-mode)
+(mas/load-dev-mode 'python-mode)
 
-(provide 'mas-python)
+(provide 'mas/python)

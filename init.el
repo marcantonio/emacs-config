@@ -17,7 +17,7 @@
 
 ;; my libs
 (add-to-list 'load-path "~/.emacs.d/elisp")
-(require 'mas)
+(require 'mas/base)
 
 ;; general
 (setq make-backup-files nil)
@@ -35,7 +35,7 @@
 (put 'downcase-region 'disabled nil)
 (set-face-attribute 'default nil :height 140)
 (setq visible-bell t)
-(global-set-key (kbd "M-r") 'mas-reload-config)
+(global-set-key (kbd "M-r") 'mas/reload-config)
 (setq inhibit-compacting-font-caches t)
 
 ;; use normal emacs regexes in builder
@@ -75,7 +75,7 @@
   (setq ispell-program-name "/opt/homebrew/bin/ispell")
 
   ;; on a mac the default visible bell is obnoxious
-  (setq ring-bell-function 'mas-visible-bell))
+  (setq ring-bell-function 'mas/visible-bell))
 
 ;; save custom stuff elsewhere
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -128,7 +128,7 @@
   (setq magit-display-buffer-function
         (lambda (buffer)
           (interactive)
-          (if (bound-and-true-p mas-purpose-active)
+          (if (bound-and-true-p mas/purpose-active)
               (magit-display-buffer-traditional buffer)
             (magit-display-buffer-fullframe-status-v1 buffer)))))
 
@@ -167,46 +167,13 @@
 ;; load special configs
 (load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
 
-(defun config-rustic-mode ()
-  (require 'mas-lsp)
-  (require 'mas-rust)
-  (lsp-deferred))
-(add-hook 'rustic-mode-hook 'config-rustic-mode)
-
-(defun config-cxx-mode ()
-  (require 'mas-lsp)
-  (require 'mas-cc)
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-  (lsp-deferred))
-(add-hook 'c-mode-hook 'config-cxx-mode)
-(add-hook 'c++-mode-hook 'config-cxx-mode)
-
-(defun config-haskell-mode ()
-  (require 'mas-lsp)
-  (require 'mas-haskell)
-  (lsp-deferred))
-(add-hook 'haskell-mode-hook 'config-haskell-mode)
-
-(defun config-python-mode ()
-  (require 'mas-lsp)
-  (require 'mas-python)
-  (lsp-deferred))
-(add-hook 'python-mode-hook 'config-python-mode)
-
-(defun config-go-mode ()
-  (require 'mas-lsp)
-  (require 'mas-golang)
-  (lsp-deferred))
-(add-hook 'go-mode-hook 'config-go-mode)
-
-(defun config-perl-mode ()
-  (require 'mas-lsp)
-  (require 'mas-perl)
-  (lsp-deferred))
+;; dev mode hooks
+(add-hook 'rustic-mode-hook 'mas/config-rustic-mode)
+(add-hook 'c-mode-hook 'mas/config-cxx-mode)
+(add-hook 'c++-mode-hook 'mas/config-cxx-mode)
+(add-hook 'haskell-mode-hook 'mas/config-haskell-mode)
+(add-hook 'python-mode-hook 'mas/config-python-mode)
+(add-hook 'go-mode-hook 'mas/config-go-mode)
 (defalias 'perl-mode 'cperl-mode)
-(add-hook 'cperl-mode-hook 'config-perl-mode)
+(add-hook 'cperl-mode-hook 'mas/config-perl-mode)
 
-(with-eval-after-load "scheme-mode"
-  (load "mas-scheme"))
-
-(require 'light-mode)

@@ -4,7 +4,7 @@
 ;; great ref for lsp ui elements:
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
 
-(require 'mas-lsp)
+(require 'mas/lsp)
 
 (use-package rustic
   :ensure
@@ -21,9 +21,9 @@
 ;; cargo toml
 (use-package toml-mode :ensure)
 
-(load-dev-mode 'rustic-mode)
+(mas/load-dev-mode 'rustic-mode)
 
-(provide 'mas-rust)
+(provide 'mas/rust)
 
 ;; the next 3 lines should work if you put cargo-run-test back in purpose
 ;; (add-to-list 'purpose-user-mode-purposes '(rustic-cargo-test-mode . cargo-run-test))

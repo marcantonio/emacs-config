@@ -1,4 +1,4 @@
-(require 'mas-lsp)
+(require 'mas/lsp)
 
 (use-package go-mode
   :ensure
@@ -8,8 +8,8 @@
   :custom
   (gofmt-command "goimports"))
 
-(load-dev-mode 'go-mode)
+(mas/load-dev-mode 'go-mode)
 
 ;(setq lsp-go-gopls-server-path "/usr/bin/gopls")
 
-(provide 'mas-golang)
+(provide 'mas/golang)
