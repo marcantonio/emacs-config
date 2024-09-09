@@ -157,6 +157,12 @@
   :config
   (which-key-mode))
 
+(use-package gptel
+  :ensure
+  :bind ("C-<return>" . gptel-send)
+  :config
+  (setq gptel-model "gpt-4o"))
+
 ;; load special configs
 (load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
 
