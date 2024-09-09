@@ -24,7 +24,8 @@
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-city-lights))
+  (load-theme 'doom-nord-light))
+  ;;(load-theme 'doom-city-lights))
   ;;(load-theme 'doom-palenight))
 
 
