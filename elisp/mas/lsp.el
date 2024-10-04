@@ -53,13 +53,12 @@
 ;; auto-complete
 (use-package company
   :ensure
-  :bind
-  (("M-RET" . company-complete)
-   (:map company-active-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ("M-<" . company-select-first)
-         ("M->" . company-select-last)))
+  :bind (("M-RET" . company-complete)
+         (:map company-active-map
+               ("C-n" . company-select-next)
+               ("C-p" . company-select-previous)
+               ("M-<" . company-select-first)
+               ("M->" . company-select-last)))
   :config
   (setq company-idle-delay 0.0)
   (setq company-minimum-prefix-length 2))
@@ -67,21 +66,19 @@
 ;; code snippets
 (use-package yasnippet
   :ensure
-  :bind
-  (:map yas-minor-mode-map
-        ("M-'" . yas-expand)
-        ([(tab)] . nil)
-        ("TAB" . nil))
+  :demand
+  :bind (:map yas-minor-mode-map
+              ("M-'" . yas-expand)
+              ([(tab)] . nil)
+              ("TAB" . nil))
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (yas-minor-mode))
+  (yas-global-mode))
 
 (use-package treemacs
   :ensure
-  :bind
-  (:map global-map
-        ("C-x t t" . treemacs)))
+  :bind (:map global-map
+              ("C-x t t" . treemacs)))
 
 (use-package lsp-treemacs
   :ensure
@@ -92,11 +89,10 @@
 ;; window purposes
 (use-package window-purpose
   :ensure
-  :bind
-  (("C-c p c" . purpose-load-dev)
-   :map purpose-mode-map
-   ("C-x b" . nil)
-   ("C-x C-f" . nil))
+  :bind (("C-c p c" . purpose-load-dev)
+         :map purpose-mode-map
+         ("C-x b" . nil)
+         ("C-x C-f" . nil))
   :config
   (defun load-treemacs-symbols ()
     (let ((main-win (selected-window)))

@@ -53,8 +53,12 @@
 (setq ispell-dictionary "american")
 
 ;; balance pairs
-(electric-pair-mode t)
-(setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+(use-package smartparens
+  :ensure
+  :hook (prog-mode text-mode markdown-mode)
+  :defer t
+  :config
+  (require 'smartparens-config))
 
 ;; macOS specific
 (when (string-equal system-type "darwin")
@@ -166,17 +170,3 @@
 
 ;; load special configs
 (load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
-
-;; dev mode hooks
-(add-hook 'rustic-mode-hook 'mas/config-rustic-mode)
-(add-hook 'c-mode-hook 'mas/config-cxx-mode)
-(add-hook 'c++-mode-hook 'mas/config-cxx-mode)
-(add-hook 'haskell-mode-hook 'mas/config-haskell-mode)
-(add-hook 'python-mode-hook 'mas/config-python-mode)
-(add-hook 'go-mode-hook 'mas/config-go-mode)
-(defalias 'perl-mode 'cperl-mode)
-(add-hook 'cperl-mode-hook 'mas/config-perl-mode)
-(add-hook 'js-ts-mode-hook 'mas/config-ts-mode)
-(add-hook 'tsx-ts-mode-hook 'mas/config-ts-mode)
-(add-hook 'typescript-ts-mode-hook 'mas/config-ts-mode)
-(setq auto-mode-alist (cons '("\\.ts" . typescript-ts-mode) auto-mode-alist))
