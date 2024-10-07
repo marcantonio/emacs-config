@@ -53,12 +53,13 @@
 (setq ispell-dictionary "american")
 
 ;; balance pairs
-(use-package smartparens
-  :ensure
-  :hook (prog-mode text-mode markdown-mode)
-  :defer t
-  :config
-  (require 'smartparens-config))
+(electric-pair-mode t)
+(setq electric-pair-delete-adjacent-pairs nil)
+(setq electric-pair-inhibit-predicate
+      ;; Also inhibit if the pair would balanced
+      (lambda (char)
+        (or (electric-pair-conservative-inhibit char)
+            (electric-pair-inhibit-if-helps-balance char))))
 
 ;; macOS specific
 (when (string-equal system-type "darwin")
