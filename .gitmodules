@@ -1,0 +1,3 @@
+[submodule "elisp/vendor/treesit-fold"]
+	path = elisp/vendor/treesit-fold
+	url = git@github.com:emacs-tree-sitter/treesit-fold.git
