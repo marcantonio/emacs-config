@@ -6,3 +6,6 @@ transient
 auto-save-list
 tramp
 .cache
+tree-sitter
+projects
+eln-cache
