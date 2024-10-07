@@ -7,13 +7,14 @@
               ("M-j" . lsp-ui-imenu)
               ("M-." . lsp-ui-peek-find-definitions)
               ("M-?" . lsp-ui-peek-find-references)
-              ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c d" . dap-hydra)
+              ("C-c C-c f" . treesit-fold-toggle)
+              ("C-c C-c h" . lsp-ui-doc-show)
+              ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c r" . lsp-rename)
               ("C-c C-c q" . lsp-workspace-restart)
               ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c d" . dap-hydra)
-              ("C-c C-c h" . lsp-ui-doc-show)
               ("C-c C-c z" . lsp-ui-doc-focus-frame)
               ("C-c C-c C-j" . flycheck-next-error)
               ("C-c C-c C-k" . flycheck-previous-error))
@@ -38,6 +39,7 @@
   (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-doc-show-with-mouse nil)
   (lsp-ui-sideline-show-code-actions t)
+  ;(lsp-ui-sideline-diagnostic-max-lines 20)
   (lsp-ui-sideline-show-hover t))
 
 (use-package lsp-ivy
@@ -167,5 +169,18 @@
         (add-to-list 'major-mode-remap-alist mapping))
       :config
       (mas/setup-install-grammars))
+
+;; Code folding
+(use-package treesit-fold
+  :after treesit
+  :load-path "~/.emacs.d/elisp/vendor/treesit-fold"
+  :config
+  (global-treesit-fold-mode))
+
+(use-package treesit-fold-indicators
+  :after (treesit treesit-fold)
+  :load-path "~/.emacs.d/elisp/vendor/treesit-fold"
+  :config
+  (global-treesit-fold-indicators-mode))
 
 (provide 'mas/lsp)
