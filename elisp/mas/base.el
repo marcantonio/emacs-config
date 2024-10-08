@@ -16,6 +16,14 @@
     (invert-face 'mode-line)
     (run-with-timer 0.1 nil 'invert-face 'mode-line)))
 
+(defun mas/maybe-disable-bars ()
+  (if (boundp 'menu-bar-mode)
+      (menu-bar-mode 0))
+  (if (boundp 'tool-bar-mode)
+      (tool-bar-mode 0))
+  (if (boundp 'scroll-bar-mode)
+      (scroll-bar-mode 0)))
+
 ;; dev mode hooks
 (defun mas/config-cxx-mode ()
   (require 'mas/lsp)
@@ -53,17 +61,19 @@
   (require 'mas/perl)
   (lsp-deferred))
 
-(add-hook 'rustic-mode-hook 'mas/config-rustic-mode)
 (add-hook 'c-mode-hook 'mas/config-cxx-mode)
 (add-hook 'c++-mode-hook 'mas/config-cxx-mode)
+(add-hook 'go-ts-mode-hook 'mas/config-go-mode)
 (add-hook 'haskell-mode-hook 'mas/config-haskell-mode)
-(add-hook 'python-mode-hook 'mas/config-python-mode)
-(add-hook 'go-mode-hook 'mas/config-go-mode)
+(add-hook 'js-ts-mode-hook 'mas/config-typescript-mode)
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook 'mas/config-perl-mode)
-(add-hook 'js-ts-mode-hook 'mas/config-typescript-mode)
+(add-hook 'python-mode-hook 'mas/config-python-mode)
+(add-hook 'rustic-mode-hook 'mas/config-rustic-mode)
 (add-hook 'tsx-ts-mode-hook 'mas/config-typescript-mode)
 (add-hook 'typescript-ts-mode-hook 'mas/config-typescript-mode)
-(setq auto-mode-alist (cons '("\\.ts" . typescript-ts-mode) auto-mode-alist))
+
+(add-to-list 'auto-mode-alist '("\\.go" . go-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ts" . typescript-ts-mode))
 
 (provide 'mas/base)
