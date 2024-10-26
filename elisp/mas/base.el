@@ -29,7 +29,7 @@
   (require 'mas/cc)
   (lsp-deferred))
 
-(defun mas/rustic-mode ()
+(defun mas/rust-mode ()
   (require 'mas/rust)
   (lsp-deferred))
 
@@ -53,6 +53,15 @@
   (require 'mas/perl)
   (lsp-deferred))
 
+;; load this early so the hooks below work right
+(use-package treesit-auto
+  :ensure
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 (add-hook 'c-mode-hook 'mas/cxx-mode)
 (add-hook 'c++-mode-hook 'mas/cxx-mode)
 (add-hook 'go-ts-mode-hook 'mas/go-mode)
@@ -61,11 +70,8 @@
 (add-hook 'cperl-mode-hook 'mas/perl-mode)
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'python-mode-hook 'mas/python-mode)
-(add-hook 'rustic-mode-hook 'mas/rustic-mode)
+(add-hook 'rust-ts-mode-hook 'mas/rust-mode)
 (add-hook 'tsx-ts-mode-hook 'mas/typescript-mode)
 (add-hook 'typescript-ts-mode-hook 'mas/typescript-mode)
-
-(add-to-list 'auto-mode-alist '("\\.go" . go-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.ts" . typescript-ts-mode))
 
 (provide 'mas/base)

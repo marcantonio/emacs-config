@@ -22,7 +22,7 @@
 ;; cargo toml
 (use-package toml-mode :ensure)
 
-(mas/load-dev-mode 'rustic-mode)
+(mas/load-dev-mode 'rust-ts-mode)
 
 (provide 'mas/rust)
 

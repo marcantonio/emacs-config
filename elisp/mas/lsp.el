@@ -52,36 +52,6 @@
   :ensure
   :defer t)
 
-;; auto-complete
-(use-package company
-  :ensure
-  :bind (("M-RET" . company-complete)
-         (:map company-active-map
-               ("C-n" . company-select-next)
-               ("C-p" . company-select-previous)
-               ("M-<" . company-select-first)
-               ("M->" . company-select-last)))
-  :config
-  (setq company-idle-delay 0.0)
-  (setq company-minimum-prefix-length 2))
-
-;; code snippets
-(use-package yasnippet
-  :ensure
-  :demand
-  :bind (:map yas-minor-mode-map
-              ("M-'" . yas-expand)
-              ([(tab)] . nil)
-              ("TAB" . nil))
-  :config
-  (yas-reload-all)
-  (yas-global-mode))
-
-(use-package treemacs
-  :ensure
-  :bind (:map global-map
-              ("C-x t t" . treemacs)))
-
 (use-package lsp-treemacs
   :ensure
   :config
