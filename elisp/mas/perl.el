@@ -1,3 +1,4 @@
+(require 'mas/dev)
 (require 'mas/lsp)
 
 ;; cpanm Perl::LanguageServer

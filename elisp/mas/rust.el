@@ -4,6 +4,7 @@
 ;; great ref for lsp ui elements:
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
 
+(require 'mas/dev)
 (require 'mas/lsp)
 
 (use-package rustic

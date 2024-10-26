@@ -1,3 +1,4 @@
+(require 'mas/dev)
 (require 'mas/lsp)
 
 ;; pip install "python-lsp-server[all]"

@@ -1,3 +1,4 @@
+(require 'mas/dev)
 (require 'mas/lsp)
 
 ;; I think this is a bug in c++-mode. You need to set the local buffer variable and the

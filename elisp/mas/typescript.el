@@ -1,3 +1,6 @@
+;; https://www.ovistoica.com/blog/2024-7-05-modern-emacs-typescript-web-tsx-config
+
+(require 'mas/dev)
 (require 'mas/lsp)
 
 (mas/load-dev-mode 'tsx-ts-mode)
