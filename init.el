@@ -75,7 +75,10 @@
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
 
-  (setq ispell-program-name "/opt/homebrew/bin/ispell")
+  ;; intel
+  (setq ispell-program-name "/usr/local/bin/ispell")
+  ;; arm
+  ;(setq ispell-program-name "/opt/homebrew/bin/ispell")
 
   ;; on a mac the default visible bell is obnoxious
   (setq ring-bell-function 'mas/visible-bell))

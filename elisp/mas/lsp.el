@@ -59,6 +59,10 @@
   (lsp-treemacs-sync-mode t))
 
 ;; lsp-booster stuff
+;;
+;; cd elisp/vendor/emacs-lsp-booster
+;; cargo build --release
+;; ls -s target/release/emacs-lsp-booster ~/bin
 
 (defun lsp-booster--advice-json-parse (old-fn &rest args)
   "Try to parse bytecode instead of json."

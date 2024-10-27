@@ -34,6 +34,12 @@
   (add-to-list 'purpose-user-mode-purposes `(,mode . main))
   (purpose-compile-user-configuration))
 
+;; code formatting for typescript, python, and go
+(use-package apheleia
+  :ensure
+  :config
+  (apheleia-global-mode))
+
 ;; still not sure about this
 (use-package projectile
   :ensure
@@ -77,7 +83,7 @@
   :ensure
   :after (treemacs projectile))
 
-;; Code folding
+;; code folding
 (use-package treesit-fold
   :after treesit
   :load-path "~/.emacs.d/elisp/vendor/treesit-fold"
