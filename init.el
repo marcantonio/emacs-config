@@ -60,7 +60,7 @@
             (electric-pair-inhibit-if-helps-balance char))))
 
 ;; macOS specific
-(when (string-equal system-type "darwin")
+(when (string-equal system-type 'darwin)
   ;; swap meta and super
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
@@ -75,10 +75,10 @@
   ;; bring initial frame to the foreground
   (select-frame-set-input-focus (selected-frame))
 
-  ;; intel
-  (setq ispell-program-name "/usr/local/bin/ispell")
-  ;; arm
-  ;(setq ispell-program-name "/opt/homebrew/bin/ispell")
+  ;; different path on my old intel mac
+  (if (string-match "aarch" system-configuration)
+      (setq ispell-program-name "/opt/homebrew/bin/ispell")
+    (setq ispell-program-name "/usr/local/bin/ispell"))
 
   ;; on a mac the default visible bell is obnoxious
   (setq ring-bell-function 'mas/visible-bell))
