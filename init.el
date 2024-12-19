@@ -168,7 +168,12 @@
   :ensure
   :bind ("C-<return>" . gptel-send)
   :config
-  (setq gptel-model "gpt-4o"))
+  (setq gptel-model 'local
+        gptel-backend (gptel-make-openai "llama-cpp"
+                        :stream t
+                        :protocol "http"
+                        :host "localhost:8080"
+                        :models '(local))))
 
 ;; load special configs
 (load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
