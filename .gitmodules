@@ -1,6 +1,6 @@
 [submodule "elisp/vendor/treesit-fold"]
 	path = elisp/vendor/treesit-fold
-	url = git@github.com:emacs-tree-sitter/treesit-fold.git
+	url = https://github.com/emacs-tree-sitter/treesit-fold.git
 [submodule "elisp/vendor/emacs-lsp-booster"]
 	path = elisp/vendor/emacs-lsp-booster
 	url = https://github.com/blahgeek/emacs-lsp-booster.git

@@ -69,7 +69,7 @@
 (add-hook 'js-ts-mode-hook 'mas/typescript-mode)
 (add-hook 'cperl-mode-hook 'mas/perl-mode)
 (defalias 'perl-mode 'cperl-mode)
-(add-hook 'python-mode-hook 'mas/python-mode)
+(add-hook 'python-ts-mode-hook 'mas/python-mode)
 (add-hook 'rust-ts-mode-hook 'mas/rust-mode)
 (add-hook 'tsx-ts-mode-hook 'mas/typescript-mode)
 (add-hook 'typescript-ts-mode-hook 'mas/typescript-mode)
