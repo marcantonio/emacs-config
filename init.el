@@ -111,14 +111,22 @@
   (setq doom-modeline-minor-modes t)
   (minions-mode))
 
-;; selection goodness -- counsel/ivy
+;; selection goodness
 (use-package counsel
   :ensure
   :defer t
   :bind (("M-x" . 'counsel-M-x)
-         ("C-x C-f" . 'counsel-find-file))
+         ("C-x C-f" . 'counsel-find-file)
+         ("C-h f" . 'counsel-describe-function)
+         ("C-h v" . 'counsel-describe-variable))
   :config
   (counsel-mode t))
+
+;; replace buffer search
+(use-package swiper
+  :ensure
+  :defer t
+  :bind (("C-s" . 'swiper)))
 
 ;; install smex but don't use it -- gives history to counsel-M-x
 (use-package smex
