@@ -62,7 +62,7 @@
 ;;
 ;; cd elisp/vendor/emacs-lsp-booster
 ;; cargo build --release
-;; ln -s `pwd`/target/release/emacs-lsp-booster ~/bin
+;; ln -s `pwd`/target/release/emacs-lsp-booster ~/.local/bin
 
 (defun lsp-booster--advice-json-parse (old-fn &rest args)
   "Try to parse bytecode instead of json."

@@ -1,6 +1,8 @@
 (require 'mas/dev)
 (require 'mas/lsp)
 
+;; go install golang.org/x/tools/gopls@latest
+
 (mas/load-dev-mode 'go-ts-mode)
 
 ;; (setq tramp-default-method "ssh")

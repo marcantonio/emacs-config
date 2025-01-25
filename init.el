@@ -16,6 +16,7 @@
              '("melpa" . "https://melpa.org/packages/") t)
 
 ;; my libs
+;; git submodule update --init --recursive
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (require 'mas/base)
 
@@ -34,6 +35,7 @@
 (set-face-attribute 'default nil :height 140)
 (setq visible-bell t)
 (global-set-key (kbd "M-r") 'mas/reload-config)
+(global-set-key (kbd "C-x C-g") 'eval-buffer)
 (setq inhibit-compacting-font-caches t)
 
 ;; use normal emacs regexes in builder
@@ -160,11 +162,6 @@
   :custom
   ;; don't escape strings
   (json-reformat:pretty-string? t))
-
-;; highlights all symbol occurences
-(use-package highlight-symbol
-  :ensure
-  :defer t)
 
 ;; hints for keybindings
 (use-package which-key
