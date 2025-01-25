@@ -13,8 +13,8 @@
             `((side . right)
               (slot . 2)
               (window-width . ,treemacs-width)))
-      ;(treemacs)
-      ;(lsp-treemacs-symbols)
+      ;;(treemacs)
+      ;;(lsp-treemacs-symbols)
       (select-window main-win)))
   (defun purpose-load-dev ()
     (interactive)
@@ -59,7 +59,8 @@
                ("M->" . company-select-last)))
   :config
   (setq company-idle-delay 0.0)
-  (setq company-minimum-prefix-length 2))
+  (setq company-minimum-prefix-length 2)
+  (company-mode))
 
 ;; code snippets
 (use-package yasnippet

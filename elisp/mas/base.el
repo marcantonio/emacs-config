@@ -25,24 +25,16 @@
       (scroll-bar-mode 0)))
 
 ;; dev mode hooks
-(defun mas/config-cxx-mode ()
+(defun mas/cxx-mode ()
   (require 'mas/cc)
   (lsp-deferred))
 
-(defun mas/rust-mode ()
-  (require 'mas/rust)
-  (lsp-deferred))
-
-(defun mas/python-mode ()
-  (require 'mas/python)
-  (lsp-deferred))
+(defun mas/elisp-mode ()
+  (require 'mas/elisp)
+  (enable-paredit-mode))
 
 (defun mas/go-mode ()
   (require 'mas/golang)
-  (lsp-deferred))
-
-(defun mas/typescript-mode ()
-  (require 'mas/typescript)
   (lsp-deferred))
 
 (defun mas/haskell-mode ()
@@ -51,6 +43,18 @@
 
 (defun mas/perl-mode ()
   (require 'mas/perl)
+  (lsp-deferred))
+
+(defun mas/python-mode ()
+  (require 'mas/python)
+  (lsp-deferred))
+
+(defun mas/rust-mode ()
+  (require 'mas/rust)
+  (lsp-deferred))
+
+(defun mas/typescript-mode ()
+  (require 'mas/typescript)
   (lsp-deferred))
 
 ;; load this early so the hooks below work right
@@ -64,6 +68,7 @@
 
 (add-hook 'c-mode-hook 'mas/cxx-mode)
 (add-hook 'c++-mode-hook 'mas/cxx-mode)
+(add-hook 'emacs-lisp-mode-hook 'mas/elisp-mode)
 (add-hook 'go-ts-mode-hook 'mas/go-mode)
 (add-hook 'haskell-mode-hook 'mas/haskell-mode)
 (add-hook 'js-ts-mode-hook 'mas/typescript-mode)

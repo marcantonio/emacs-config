@@ -35,7 +35,6 @@
 (set-face-attribute 'default nil :height 140)
 (setq visible-bell t)
 (global-set-key (kbd "M-r") 'mas/reload-config)
-(global-set-key (kbd "C-x C-g") 'eval-buffer)
 (setq inhibit-compacting-font-caches t)
 
 ;; use normal emacs regexes in builder
