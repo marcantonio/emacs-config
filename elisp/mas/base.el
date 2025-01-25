@@ -30,8 +30,7 @@
   (lsp-deferred))
 
 (defun mas/elisp-mode ()
-  (require 'mas/elisp)
-  (enable-paredit-mode))
+  (require 'mas/elisp))
 
 (defun mas/go-mode ()
   (require 'mas/golang)
