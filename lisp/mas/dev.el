@@ -87,13 +87,13 @@
 ;; code folding
 (use-package treesit-fold
   :after treesit
-  :load-path "~/.emacs.d/elisp/vendor/treesit-fold"
+  :load-path "~/.emacs.d/lisp/vendor/treesit-fold"
   :config
   (global-treesit-fold-mode))
 
 (use-package treesit-fold-indicators
   :after (treesit treesit-fold)
-  :load-path "~/.emacs.d/elisp/vendor/treesit-fold"
+  :load-path "~/.emacs.d/lisp/vendor/treesit-fold"
   :config
   (global-treesit-fold-indicators-mode))
 

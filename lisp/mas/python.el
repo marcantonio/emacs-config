@@ -1,7 +1,7 @@
 (require 'mas/dev)
 (require 'mas/lsp)
 
-(require 'tramp)
+;;(require 'tramp)
 
 ;; this makes everything work...
 ;; (setq lsp-log-io t)

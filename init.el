@@ -17,7 +17,7 @@
 
 ;; my libs
 ;; git submodule update --init --recursive
-(add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'mas/base)
 
 ;; general
@@ -180,4 +180,4 @@
                         :models '(local))))
 
 ;; load special configs
-(load-file (expand-file-name "elisp/decorations.el" user-emacs-directory))
+(load-file (expand-file-name "lisp/decorations.el" user-emacs-directory))

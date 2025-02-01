@@ -39,7 +39,7 @@
   (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-doc-show-with-mouse nil)
   (lsp-ui-sideline-show-code-actions t)
-  ;(lsp-ui-sideline-diagnostic-max-lines 20)
+                                        ;(lsp-ui-sideline-diagnostic-max-lines 20)
   (lsp-ui-sideline-show-hover t))
 
 (use-package lsp-ivy
@@ -60,7 +60,7 @@
 
 ;; lsp-booster stuff
 ;;
-;; cd elisp/vendor/emacs-lsp-booster
+;; cd lisp/vendor/emacs-lsp-booster
 ;; cargo build --release
 ;; ln -s `pwd`/target/release/emacs-lsp-booster ~/.local/bin
 

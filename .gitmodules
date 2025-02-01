@@ -1,0 +1,6 @@
+[submodule "lisp/vendor/emacs-lsp-booster"]
+	path = lisp/vendor/emacs-lsp-booster
+	url = https://github.com/blahgeek/emacs-lsp-booster.git
+[submodule "lisp/vendor/treeset-fold"]
+	path = lisp/vendor/treeset-fold
+	url = https://github.com/emacs-tree-sitter/treesit-fold.git

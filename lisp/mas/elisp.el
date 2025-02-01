@@ -7,6 +7,5 @@
   ((emacs-lisp-mode . enable-paredit-mode)))
 
 (global-set-key (kbd "C-x C-g") 'eval-buffer)
-(setq debug-on-error t)
 
 (provide 'mas/elisp)
