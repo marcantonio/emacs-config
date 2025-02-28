@@ -1,36 +1,29 @@
 ;; decorations
-; hint: pick colors with C-u C-x = over spot
-;(set-foreground-color "white")
-;(set-background-color "black")
-;(set-face-attribute 'default nil :height 140)
-;(set-face-attribute 'font-lock-comment-face nil :foreground "Firebrick")
-;(set-face-attribute 'font-lock-string-face nil :foreground "SpringGreen4")
-;(set-face-attribute 'font-lock-keyword-face nil :foreground "RoyalBlue")
-;(set-face-attribute 'font-lock-function-name-face nil :foreground "DarkOrchid")
-;(set-face-attribute 'font-lock-variable-name-face nil :foreground "GoldenRod")
-;(set-face-attribute 'font-lock-type-face nil :foreground "DarkGoldenRod")
-;(setq font-lock-maximum-decoration t)
-
-;(load-theme 'leuven)
-;(set-cursor-color "#335ea8")
-
-;; (use-package vscode-dark-plus-theme
-;;   :ensure
-;;   :config
-;;   (load-theme 'vscode-dark-plus))
+;; hint: pick colors with C-u C-x = over spot
+;; (set-foreground-color "white")
+;; (set-background-color "black")
+;; (set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'font-lock-comment-face nil :foreground "Firebrick")
+;; (set-face-attribute 'font-lock-string-face nil :foreground "SpringGreen4")
+;; (set-face-attribute 'font-lock-keyword-face nil :foreground "RoyalBlue")
+;; (set-face-attribute 'font-lock-function-name-face nil :foreground "DarkOrchid")
+;; (set-face-attribute 'font-lock-variable-name-face nil :foreground "GoldenRod")
+;; (set-face-attribute 'font-lock-type-face nil :foreground "DarkGoldenRod")
+;; (setq font-lock-maximum-decoration t)
 
 (use-package doom-themes
   :ensure
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  ;;(load-theme 'doom-nord-light))
   (load-theme 'doom-city-lights))
-  ;;(load-theme 'doom-palenight))
+
+;; (load-theme 'doom-palenight)
+;; (load-theme 'doom-nord-light)
 
 
 ;; slightly bigger font
-;(set-face-attribute 'default nil :height 130)
+;; (set-face-attribute 'default nil :height 130)
 
 ;; use magit diff colors for ediff -- better over tmux
 (add-hook 'ediff-load-hook
