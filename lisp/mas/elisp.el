@@ -1,6 +1,11 @@
+;; Call this early to prevent a recursive require loop when used with
+;; `emacs-lisp-mode-hook'. This will happen when a package is loaded on start via
+;; `use-package' because `loaddefs-generate' loads `emacs-lisp-mode' which then tries to
+;; load this again, etc. Must be a better way...
+(provide 'mas/elisp)
+
 (require 'mas/dev)
 
-(mas/load-dev-mode 'emacs-lisp-mode)
 (use-package paredit
   :ensure
   :hook
@@ -8,4 +13,4 @@
 
 (global-set-key (kbd "C-x C-g") 'eval-buffer)
 
-(provide 'mas/elisp)
+(mas/load-dev-mode 'emacs-lisp-mode)
