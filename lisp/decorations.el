@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; decorations
 ;; hint: pick colors with C-u C-x = over spot
 ;; (set-foreground-color "white")

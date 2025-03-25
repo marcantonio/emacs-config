@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; rust-mode + enhancements
 ;; much of this comes from https://github.com/rksm/emacs-rust-config
 ;;

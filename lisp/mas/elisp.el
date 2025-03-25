@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; Call this early to prevent a recursive require loop when used with
 ;; `emacs-lisp-mode-hook'. This will happen when a package is loaded on start via
 ;; `use-package' because `loaddefs-generate' loads `emacs-lisp-mode' which then tries to

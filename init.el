@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (add-to-list 'after-init-hook
              (lambda ()
                (message (concat "emacs (" (number-to-string (emacs-pid)) ") started in " (emacs-init-time)))))

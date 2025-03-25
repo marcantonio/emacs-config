@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; window purposes
 (use-package window-purpose
   :ensure
