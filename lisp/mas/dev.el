@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; window purposes
 (use-package window-purpose
   :ensure
@@ -13,13 +15,13 @@
             `((side . right)
               (slot . 2)
               (window-width . ,treemacs-width)))
-      ;;(treemacs)
-      ;;(lsp-treemacs-symbols)
+      (treemacs)
+      (lsp-treemacs-symbols)
       (select-window main-win)))
   (defun purpose-load-dev ()
     (interactive)
     (purpose-load-window-layout 'dev)
-    (load-treemacs-symbols)
+    ;;(load-treemacs-symbols)
     (flycheck-list-errors)
     (setq mas/purpose-active t))
   (purpose-mode)

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; Major mode for the Light programming language
 ;; Resources:
 ;;   - https://www.emacswiki.org/emacs/ModeTutorial

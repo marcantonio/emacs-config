@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; https://www.ovistoica.com/blog/2024-7-05-modern-emacs-typescript-web-tsx-config
 
 (require 'mas/dev)

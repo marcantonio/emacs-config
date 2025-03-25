@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; common lsp-mode config
 
 (use-package lsp-mode

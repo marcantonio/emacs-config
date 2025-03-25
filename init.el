@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (add-to-list 'after-init-hook
              (lambda ()
                (message (concat "emacs (" (number-to-string (emacs-pid)) ") started in " (emacs-init-time)))))
@@ -117,6 +119,7 @@
   :ensure
   :defer t
   :bind (("M-x" . 'counsel-M-x)
+         ("s-x" . 'execute-extended-command) ; old M-x
          ("C-x C-f" . 'counsel-find-file)
          ("C-h f" . 'counsel-describe-function)
          ("C-h v" . 'counsel-describe-variable))

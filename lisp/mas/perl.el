@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (require 'mas/dev)
 (require 'mas/lsp)
 
