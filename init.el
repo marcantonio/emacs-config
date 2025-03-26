@@ -130,7 +130,9 @@
 (use-package swiper
   :ensure
   :defer t
-  :bind (("C-s" . 'swiper)))
+  :bind (("C-s" . 'swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . 'ivy-partial))) ; don't select the only candidate
 
 ;; install smex but don't use it -- gives history to counsel-M-x
 (use-package smex
