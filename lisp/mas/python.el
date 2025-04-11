@@ -12,7 +12,6 @@
   (setq lsp-pyright-venv-path "")
   (setq lsp-pyright-extra-paths [])
   (setq lsp-pyright-type-checking-mode "off"))
-
 ;; (setq flycheck-flake8rc "~/.emacs.d/flake8.cfg")
 
 (mas/load-dev-mode 'python-ts-mode)

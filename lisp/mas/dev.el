@@ -99,4 +99,11 @@
   :config
   (global-treesit-fold-indicators-mode))
 
+;; useful for dev env setup
+(use-package envrc
+  :ensure
+  :config
+  (when (executable-find "direnv")
+    (add-hook 'after-init-hook #'envrc-global-mode)))
+
 (provide 'mas/dev)
