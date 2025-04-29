@@ -177,14 +177,21 @@
 
 (use-package gptel
   :ensure
-  :bind ("C-<return>" . gptel-send)
+  :bind (("C-c d g" . gptel)
+         ("C-c d s" . gptel-send)
+         ("C-c d r" . gptel-rewrite)
+         ("C-c d m" . gptel-menu)
+         ("C-c d a" . gptel-add))
   :config
-  (setq gptel-model 'local
-        gptel-backend (gptel-make-openai "llama-cpp"
-                        :stream t
-                        :protocol "http"
-                        :host "localhost:8080"
-                        :models '(local))))
+  (add-hook 'gptel-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-<return>") 'gptel-send)))
+  (gptel-make-gh-copilot "Copilot")
+  (setq gptel-model 'claude-3.7-sonnet
+        gptel-backend (gptel-make-gh-copilot "Copilot")
+        gptel-stream t)
+  (setf (alist-get 'default gptel-directives)
+        "You are a large language model living in Emacs, an expert programmer, and a helpful assistant. Respond concisely."))
 
 ;; load special configs
 (load-file (expand-file-name "lisp/decorations.el" user-emacs-directory))
