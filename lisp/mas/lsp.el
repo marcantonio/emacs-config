@@ -41,7 +41,7 @@
   (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-doc-show-with-mouse nil)
   (lsp-ui-sideline-show-code-actions t)
-                                        ;(lsp-ui-sideline-diagnostic-max-lines 20)
+  ;; (lsp-ui-sideline-diagnostic-max-lines 20)
   (lsp-ui-sideline-show-hover t))
 
 (use-package lsp-ivy

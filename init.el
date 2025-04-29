@@ -2,7 +2,9 @@
 
 (add-to-list 'after-init-hook
              (lambda ()
-               (message (concat "emacs (" (number-to-string (emacs-pid)) ") started in " (emacs-init-time)))))
+               (message
+                (concat "emacs (" (number-to-string (emacs-pid)) ") started in "
+                        (emacs-init-time)))))
 
 ;; minimize garbage collection during startup
 (setq gc-cons-threshold most-positive-fixnum)
